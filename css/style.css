@@ -247,7 +247,34 @@ h2 {
    MOBILE
 ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 600px) {.site-header {
+    position: sticky;
+    top: 0;
+}
+
+.navbar {
+    width: calc(100% - 30px);
+
+    min-height: 68px;
+}
+
+.logo {
+    font-size: 1.1rem;
+}
+
+.nav-menu {
+    display: none;
+}
+
+.nav-contact {
+    width: auto;
+
+    min-height: 42px;
+
+    padding: 9px 16px;
+
+    font-size: 0.85rem;
+}
 
     .design-test {
         width: min(100% - 30px, 1200px);
