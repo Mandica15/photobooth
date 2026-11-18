@@ -358,12 +358,90 @@ h2 {
     white-space: nowrap;
 }
 
+/* =========================
+   HERO
+========================= */
 
+.hero {
+    padding: 70px 0 90px;
+    overflow: hidden;
+}
+
+.hero-container {
+    width: min(1200px, calc(100% - 40px));
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 70px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: clamp(3rem, 5vw, 4.8rem);
+}
+
+.hero-image {
+    position: relative;
+
+    width: 100%;
+    height: 650px;
+
+    overflow: hidden;
+
+    border-radius: var(--radius-large);
+
+    box-shadow: var(--shadow-medium);
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    transition: transform 0.6s ease;
+}
+
+.hero-image:hover img {
+    transform: scale(1.025);
+}
 /* =========================
    MOBILE
 ========================= */
 
 @media (max-width: 600px) {
+   .hero {
+    padding: 45px 0 60px;
+}
+
+.hero-container {
+    width: calc(100% - 30px);
+
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.7rem, 13vw, 4rem);
+}
+
+.hero-image {
+    height: 480px;
+
+    border-radius: var(--radius-medium);
+}
 
     .navbar {
         width: calc(100% - 30px);
