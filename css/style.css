@@ -1,0 +1,7 @@
+/* Stilurile site-ului. Le completăm la Pasul 3 (design). */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
+}
