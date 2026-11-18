@@ -417,10 +417,49 @@ h2 {
     transform: scale(1.025);
 }
 /* =========================
+   MOBILE MENU BUTTON
+========================= */
+
+.menu-toggle {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 10px;
+
+    background: transparent;
+    border: 0;
+
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+
+    width: 24px;
+    height: 2px;
+
+    margin: 5px auto;
+
+    background: var(--color-text);
+
+    border-radius: 10px;
+
+    transition: var(--transition);
+}
+/* =========================
    MOBILE
 ========================= */
 
 @media (max-width: 600px) {
+   .menu-toggle {
+    display: block;
+}
+
+.nav-contact {
+    display: none;
+}
    .hero {
     padding: 45px 0 60px;
 }
