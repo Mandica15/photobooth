@@ -1,7 +1,290 @@
-/* Stilurile site-ului. Le completăm la Pasul 3 (design). */
+/* =========================
+   DESIGN SYSTEM
+========================= */
+
+:root {
+
+    /* Culori */
+
+    --color-bg: #FAF8F5;
+    --color-white: #FFFFFF;
+
+    --color-text: #1F1F1F;
+    --color-text-light: #6F6A64;
+
+    --color-primary: #C6A15B;
+    --color-primary-dark: #A98443;
+    --color-primary-light: #F1E7D5;
+
+    --color-border: #E8E2DA;
+
+
+    /* Fonturi */
+
+    --font-title: "Playfair Display", serif;
+    --font-body: "Inter", sans-serif;
+
+
+    /* Colțuri */
+
+    --radius-small: 12px;
+    --radius-medium: 20px;
+    --radius-large: 30px;
+
+
+    /* Umbre */
+
+    --shadow-small:
+        0 5px 20px rgba(0, 0, 0, 0.05);
+
+    --shadow-medium:
+        0 15px 40px rgba(0, 0, 0, 0.08);
+
+
+    /* Tranziții */
+
+    --transition:
+        0.25s ease;
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-  font-family: system-ui, sans-serif;
-  margin: 0;
-  padding: 2rem;
-  text-align: center;
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-title);
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: clamp(2.7rem, 7vw, 5rem);
+    max-width: 900px;
+}
+
+h1 span {
+    color: var(--color-primary-dark);
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+
+    color: var(--color-primary-dark);
+
+    margin-bottom: 18px;
+}
+
+.lead {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+
+    color: var(--color-text-light);
+
+    max-width: 580px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 52px;
+
+    padding: 14px 24px;
+
+    border-radius: 100px;
+
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--color-text);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    background: white;
+
+    box-shadow: var(--shadow-small);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.design-card {
+
+    background: var(--color-white);
+
+    padding: clamp(25px, 5vw, 45px);
+
+    border-radius: var(--radius-large);
+
+    box-shadow: var(--shadow-medium);
+
+    max-width: 500px;
+
+    margin-top: 80px;
+}
+
+.design-card h2 {
+    margin-bottom: 15px;
+}
+
+.design-card > p:not(.eyebrow) {
+    color: var(--color-text-light);
+}
+
+.price {
+
+    font-family: var(--font-title);
+
+    font-size: 2.7rem;
+
+    font-weight: 600;
+
+    margin: 30px 0;
+}
+
+.price span {
+
+    font-family: var(--font-body);
+
+    font-size: 1rem;
+
+    color: var(--color-text-light);
+}
+
+
+/* =========================
+   DESIGN TEST
+========================= */
+
+.design-test {
+
+    width: min(1200px, calc(100% - 40px));
+
+    margin: auto;
+
+    padding: 100px 0;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .design-test {
+        width: min(100% - 30px, 1200px);
+
+        padding: 70px 0;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .design-card {
+        margin-top: 60px;
+
+        border-radius: var(--radius-medium);
+    }
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+
 }
