@@ -1,47 +1,62 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================
+   MOBILE MENU
+========================= */
 
-    const menuToggle = document.querySelector(".menu-toggle");
-    const mobileMenu = document.querySelector(".mobile-menu");
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
 
-    if (!menuToggle || !mobileMenu) {
-        return;
-    }
 
-    // Deschidere / închidere meniu
+if (menuToggle && mobileMenu) {
 
+    // Deschide / închide meniul
     menuToggle.addEventListener("click", () => {
 
-        const isOpen = mobileMenu.classList.toggle("is-open");
+        const isOpen =
+            menuToggle.classList.toggle("active");
 
-        menuToggle.classList.toggle("is-open", isOpen);
+        mobileMenu.classList.toggle("active");
 
+
+        // Accesibilitate
         menuToggle.setAttribute(
             "aria-expanded",
             isOpen
         );
 
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen
+                ? "Închide meniul"
+                : "Deschide meniul"
+        );
+
     });
 
 
-    // Închide meniul după apăsarea unui link
+    // Închide meniul după selectarea unui link
+    const mobileLinks =
+        mobileMenu.querySelectorAll("a");
 
-    const mobileLinks = mobileMenu.querySelectorAll("a");
 
     mobileLinks.forEach((link) => {
 
         link.addEventListener("click", () => {
 
-            mobileMenu.classList.remove("is-open");
-
-            menuToggle.classList.remove("is-open");
+            menuToggle.classList.remove("active");
+            mobileMenu.classList.remove("active");
 
             menuToggle.setAttribute(
                 "aria-expanded",
                 "false"
             );
 
+            menuToggle.setAttribute(
+                "aria-label",
+                "Deschide meniul"
+            );
+
         });
 
     });
 
-});
+}
