@@ -135,6 +135,7 @@ h2 {
 
     padding: 14px 24px;
 
+    border: none;
     border-radius: 100px;
 
     font-family: var(--font-body);
@@ -142,8 +143,6 @@ h2 {
     font-weight: 600;
 
     text-decoration: none;
-
-    border: none;
 
     cursor: pointer;
 
@@ -179,64 +178,7 @@ h2 {
 
 
 /* =========================
-   CARD
-========================= */
-
-.design-card {
-    background: var(--color-white);
-
-    padding: clamp(25px, 5vw, 45px);
-
-    border-radius: var(--radius-large);
-
-    box-shadow: var(--shadow-medium);
-
-    max-width: 500px;
-
-    margin-top: 80px;
-}
-
-.design-card h2 {
-    margin-bottom: 15px;
-}
-
-.design-card > p:not(.eyebrow) {
-    color: var(--color-text-light);
-}
-
-.price {
-    font-family: var(--font-title);
-
-    font-size: 2.7rem;
-    font-weight: 600;
-
-    margin: 30px 0;
-}
-
-.price span {
-    font-family: var(--font-body);
-
-    font-size: 1rem;
-
-    color: var(--color-text-light);
-}
-
-
-/* =========================
-   DESIGN TEST
-========================= */
-
-.design-test {
-    width: min(1200px, calc(100% - 40px));
-
-    margin: auto;
-
-    padding: 100px 0;
-}
-
-
-/* =========================
-   HEADER / NAVIGATION
+   HEADER
 ========================= */
 
 .site-header {
@@ -292,7 +234,7 @@ h2 {
 
 
 /* =========================
-   NAVIGATION MENU
+   NAVIGATION DESKTOP
 ========================= */
 
 .nav-menu {
@@ -347,8 +289,16 @@ h2 {
 
 
 /* =========================
-   NAVIGATION CONTACT BUTTON
+   NAV ACTIONS
 ========================= */
+
+.nav-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
 
 .nav-contact {
     min-height: 44px;
@@ -358,20 +308,24 @@ h2 {
     white-space: nowrap;
 }
 
+
 /* =========================
    HERO
 ========================= */
 
 .hero {
     padding: 70px 0 90px;
+
     overflow: hidden;
 }
 
 .hero-container {
     width: min(1200px, calc(100% - 40px));
+
     margin: auto;
 
     display: grid;
+
     grid-template-columns: 1fr 1fr;
 
     align-items: center;
@@ -401,13 +355,12 @@ h2 {
 }
 
 .hero-image img {
+    display: block;
+
     width: 100%;
     height: 100%;
 
-    display: block;
-
     object-fit: cover;
-
     object-position: center;
 
     transition: transform 0.6s ease;
@@ -416,76 +369,154 @@ h2 {
 .hero-image:hover img {
     transform: scale(1.025);
 }
+
+
 /* =========================
-   MOBILE MENU BUTTON
+   HAMBURGER
 ========================= */
 
 .menu-toggle {
     display: none;
 
+    position: relative;
+
     width: 44px;
     height: 44px;
 
-    padding: 10px;
+    flex-shrink: 0;
+
+    padding: 0;
 
     background: transparent;
-    border: 0;
+
+    border: 1px solid transparent;
+    border-radius: 50%;
 
     cursor: pointer;
+
+    transition:
+        border-color 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
 }
 
+
+/* Cele trei linii */
+
 .menu-toggle span {
-    display: block;
+    position: absolute;
 
-    width: 24px;
+    left: 50%;
+
+    width: 22px;
     height: 2px;
-
-    margin: 3px auto;
 
     background: var(--color-text);
 
     border-radius: 10px;
 
-    transition: var(--transition);
+    transform: translateX(-50%);
+
+    transition:
+        top 0.3s ease,
+        transform 0.3s ease,
+        opacity 0.2s ease;
 }
+
+
+/* Sus */
+
+.menu-toggle span:nth-child(1) {
+    top: 15px;
+}
+
+
+/* Mijloc */
+
+.menu-toggle span:nth-child(2) {
+    top: 21px;
+}
+
+
+/* Jos */
+
+.menu-toggle span:nth-child(3) {
+    top: 27px;
+}
+
+
+/* =========================
+   HAMBURGER DESCHIS
+========================= */
+
+.menu-toggle.active {
+    border-color: var(--color-primary);
+
+    background: var(--color-white);
+
+    box-shadow: var(--shadow-small);
+
+    transform: rotate(90deg);
+}
+
+
+/* Prima linie formează X */
+
+.menu-toggle.active span:nth-child(1) {
+    top: 20px;
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+}
+
+
+/* Linia din mijloc dispare */
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+
+    transform:
+        translateX(-50%)
+        scale(0);
+}
+
+
+/* Ultima linie formează X */
+
+.menu-toggle.active span:nth-child(3) {
+    top: 20px;
+
+    transform:
+        translateX(-50%)
+        rotate(-45deg);
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+    display: none;
+}
+
+
 /* =========================
    MOBILE
 ========================= */
 
 @media (max-width: 600px) {
-   .menu-toggle {
-    display: block;
-}
 
-.nav-contact {
-    display: none;
-}
-   .hero {
-    padding: 45px 0 60px;
-}
-
-.hero-container {
-    width: calc(100% - 30px);
-
-    grid-template-columns: 1fr;
-
-    gap: 40px;
-}
-
-.hero-content h1 {
-    font-size: clamp(2.7rem, 13vw, 4rem);
-}
-
-.hero-image {
-    height: 480px;
-
-    border-radius: var(--radius-medium);
-}
+    /* HEADER */
 
     .navbar {
         width: calc(100% - 30px);
 
         min-height: 68px;
+
+        gap: 15px;
     }
 
     .logo {
@@ -497,42 +528,133 @@ h2 {
     }
 
     .nav-contact {
-        width: auto;
-
-        min-height: 42px;
-
-        padding: 9px 16px;
-
-        font-size: 0.85rem;
+        display: none;
     }
 
-    .design-test {
-        width: min(100% - 30px, 1200px);
 
-        padding: 70px 0;
+    /* HAMBURGER */
+
+    .menu-toggle {
+        display: block;
     }
+
+
+    /* MENIU MOBIL */
+
+    .mobile-menu {
+        display: flex;
+
+        position: absolute;
+
+        top: 68px;
+        left: 0;
+
+        width: 100%;
+
+        padding: 10px 20px 25px;
+
+        flex-direction: column;
+
+        background: rgba(250, 248, 245, 0.98);
+
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+
+        border-bottom: 1px solid var(--color-border);
+
+        box-shadow:
+            0 15px 30px rgba(0, 0, 0, 0.05);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transform: translateY(-10px);
+
+        pointer-events: none;
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0.25s;
+    }
+
+
+    /* Meniu deschis */
+
+    .mobile-menu.active {
+        opacity: 1;
+
+        visibility: visible;
+
+        transform: translateY(0);
+
+        pointer-events: auto;
+    }
+
+
+    /* Linkuri */
+
+    .mobile-menu a {
+        padding: 14px 5px;
+
+        color: var(--color-text);
+
+        font-size: 1rem;
+        font-weight: 500;
+
+        text-decoration: none;
+
+        border-bottom:
+            1px solid var(--color-border);
+    }
+
+    .mobile-menu a:last-child {
+        margin-top: 8px;
+
+        color: var(--color-primary-dark);
+
+        font-weight: 600;
+
+        border-bottom: 0;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        padding: 45px 0 60px;
+    }
+
+    .hero-container {
+        width: calc(100% - 30px);
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .hero-content h1 {
+        font-size:
+            clamp(2.7rem, 13vw, 4rem);
+    }
+
+    .hero-image {
+        height: 480px;
+
+        border-radius:
+            var(--radius-medium);
+    }
+
+
+    /* BUTOANE HERO */
 
     .button-group {
         flex-direction: column;
     }
 
-    .btn {
+    .button-group .btn {
         width: 100%;
-    }
-
-    /*
-       .btn de mai sus face toate butoanele late pe mobil.
-       Butonul din meniu trebuie să rămână mic.
-    */
-
-    .nav-contact {
-        width: auto;
-    }
-
-    .design-card {
-        margin-top: 60px;
-
-        border-radius: var(--radius-medium);
     }
 }
 
@@ -551,147 +673,5 @@ h2 {
     *::before,
     *::after {
         transition: none !important;
-    }
-}
-/* =========================
-   MOBILE MENU
-========================= */
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.menu-toggle {
-    display: none;
-
-    width: 46px;
-    height: 46px;
-
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
-
-    background: var(--color-white);
-
-    cursor: pointer;
-
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    gap: 5px;
-
-    padding: 0;
-
-    transition: var(--transition);
-}
-
-.menu-toggle span {
-    display: block;
-
-    width: 18px;
-    height: 2px;
-
-    background: var(--color-text);
-
-    border-radius: 10px;
-
-    transition: var(--transition);
-}
-
-.contact-mobile {
-    display: none;
-}
-
-.mobile-menu {
-    display: none;
-}
-
-
-/* =========================
-   MOBILE MENU - PHONE
-========================= */
-
-@media (max-width: 600px) {
-
-    .menu-toggle {
-        display: flex;
-    }
-
-    .contact-desktop {
-        display: none;
-    }
-
-    .contact-mobile {
-        display: inline;
-    }
-
-    .mobile-menu {
-        position: absolute;
-
-        top: 100%;
-        left: 0;
-
-        width: 100%;
-
-        padding: 15px 20px 25px;
-
-        background: rgba(250, 248, 245, 0.98);
-
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-
-        border-bottom: 1px solid var(--color-border);
-
-        flex-direction: column;
-
-        opacity: 0;
-        visibility: hidden;
-
-        transform: translateY(-10px);
-
-        transition: var(--transition);
-    }
-
-    .mobile-menu.is-open {
-        display: flex;
-
-        opacity: 1;
-        visibility: visible;
-
-        transform: translateY(0);
-    }
-
-    .mobile-menu a {
-        color: var(--color-text);
-
-        text-decoration: none;
-
-        font-size: 1rem;
-        font-weight: 600;
-
-        padding: 14px 5px;
-
-        border-bottom: 1px solid var(--color-border);
-    }
-
-    .mobile-menu a:last-child {
-        border-bottom: none;
-    }
-
-
-    /* Transformăm hamburgerul în X */
-
-    .menu-toggle.is-open span:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-    }
-
-    .menu-toggle.is-open span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .menu-toggle.is-open span:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
     }
 }
