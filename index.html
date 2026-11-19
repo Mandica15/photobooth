@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
 
@@ -28,147 +29,162 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+
 <body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
     <header class="site-header">
 
-    <div class="navbar">
+        <div class="navbar">
 
-        <a href="#acasa" class="logo">
-            CABINA FOTO
-        </a>
-
-        <!-- Meniu desktop -->
-        <nav class="nav-menu">
-            <a href="#acasa">Acasă</a>
-            <a href="#pachete">Pachete</a>
-            <a href="#modele">Modele</a>
-            <a href="#panouri">Panouri</a>
-            <a href="#cum-functioneaza">Cum funcționează</a>
-            <a href="#galerie">Galerie</a>
-        </nav>
-
-        <div class="nav-actions">
-
-            <a href="#contact" class="btn btn-primary nav-contact">
-                <span class="contact-desktop">Cere ofertă</span>
-                <span class="contact-mobile">Ofertă</span>
+            <!-- Logo -->
+            <a href="#acasa" class="logo">
+                CABINA FOTO
             </a>
 
-            <button
-                class="menu-toggle"
-                type="button"
-                aria-label="Deschide meniul"
-                aria-expanded="false"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+
+            <!-- Meniu desktop -->
+            <nav class="nav-menu">
+                <a href="#acasa">Acasă</a>
+                <a href="#pachete">Pachete</a>
+                <a href="#modele">Modele</a>
+                <a href="#panouri">Panouri</a>
+                <a href="#cum-functioneaza">Cum funcționează</a>
+                <a href="#galerie">Galerie</a>
+            </nav>
+
+
+            <!-- Acțiuni dreapta -->
+            <div class="nav-actions">
+
+                <a
+                    href="#contact"
+                    class="btn btn-primary nav-contact"
+                >
+                    Cere ofertă
+                </a>
+
+
+                <!-- Hamburger mobil -->
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Deschide meniul"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
 
         </div>
 
-    </div>
 
-    <!-- Meniu mobil -->
-    <nav class="mobile-menu">
+        <!-- Meniu mobil -->
+        <nav class="mobile-menu" id="mobileMenu">
 
-        <a href="#acasa">Acasă</a>
-        <a href="#pachete">Pachete</a>
-        <a href="#modele">Modele</a>
-        <a href="#panouri">Panouri</a>
-        <a href="#cum-functioneaza">Cum funcționează</a>
-        <a href="#galerie">Galerie</a>
-        <a href="#contact">Contact</a>
-
-    </nav>
-
-</header>
-
-
-    <div class="navbar">
-
-        <a href="#acasa" class="logo">
-            CABINA FOTO
-        </a>
-
-        <nav class="nav-menu">
             <a href="#acasa">Acasă</a>
             <a href="#pachete">Pachete</a>
             <a href="#modele">Modele</a>
             <a href="#panouri">Panouri</a>
             <a href="#cum-functioneaza">Cum funcționează</a>
             <a href="#galerie">Galerie</a>
+            <a href="#contact">Cere ofertă</a>
+
         </nav>
 
-        <a href="#contact" class="btn btn-primary nav-contact">
-            Cere ofertă
-        </a>
-        <button
-    class="menu-toggle"
-    id="menuToggle"
-    type="button"
-    aria-label="Deschide meniul"
-    aria-expanded="false"
->
-    <span></span>
-    <span></span>
-    <span></span>
-</button>
+    </header>
 
-    </div>
 
-</header>
 
-   <main>
+    <!-- =========================
+         MAIN
+    ========================== -->
 
-    <section class="hero" id="acasa">
+    <main>
 
-        <div class="hero-container">
 
-            <div class="hero-content">
+        <!-- =========================
+             HERO
+        ========================== -->
 
-                <p class="eyebrow">
-                    CABINĂ FOTO PENTRU EVENIMENTE
-                </p>
+        <section class="hero" id="acasa">
 
-                <h1>
-                    Amintiri care rămân.
-                    <span>Distracție care începe aici.</span>
-                </h1>
+            <div class="hero-container">
 
-                <p class="lead">
-                    Cabină foto pentru momentele pe care vrei să le păstrezi.
-                </p>
 
-                <div class="button-group">
+                <!-- Hero text -->
+                <div class="hero-content">
 
-                    <a href="#pachete" class="btn btn-primary">
-                        Vezi pachetele
-                    </a>
+                    <p class="eyebrow">
+                        CABINĂ FOTO PENTRU EVENIMENTE
+                    </p>
 
-                    <a href="#contact" class="btn btn-secondary">
-                        Cere o ofertă
-                    </a>
+                    <h1>
+                        Amintiri care rămân.
+                        <span>
+                            Distracție care începe aici.
+                        </span>
+                    </h1>
+
+                    <p class="lead">
+                        Cabină foto pentru momentele pe care vrei să le păstrezi.
+                    </p>
+
+
+                    <div class="button-group">
+
+                        <a
+                            href="#pachete"
+                            class="btn btn-primary"
+                        >
+                            Vezi pachetele
+                        </a>
+
+                        <a
+                            href="#contact"
+                            class="btn btn-secondary"
+                        >
+                            Cere o ofertă
+                        </a>
+
+                    </div>
 
                 </div>
 
+
+                <!-- Hero imagine -->
+                <div class="hero-image">
+
+                    <img
+                        src="assets/images/hero.jpg"
+                        alt="Cabină foto la eveniment"
+                    >
+
+                </div>
+
+
             </div>
 
-            <div class="hero-image">
+        </section>
 
-                <img
-                    src="assets/images/hero.jpg"
-                    alt="Cabină foto la eveniment"
-                >
 
-            </div>
+    </main>
 
-        </div>
 
-    </section>
 
-</main>
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
-<script src="js/app.js"></script>
+    <script src="js/app.js"></script>
+
 </body>
+
 </html>
