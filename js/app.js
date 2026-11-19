@@ -1,31 +1,27 @@
-/* =========================
-   MOBILE MENU
-========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
     const menuToggle =
-        document.querySelector(".menu-toggle");
+        document.getElementById("menuToggle");
 
     const mobileMenu =
-        document.querySelector(".mobile-menu");
+        document.getElementById("mobileMenu");
 
 
     if (menuToggle && mobileMenu) {
 
-        /* Deschidere / închidere meniu */
-
         menuToggle.addEventListener("click", () => {
 
             const isOpen =
-                mobileMenu.classList.toggle("is-open");
+                menuToggle.classList.toggle("active");
 
-            menuToggle.classList.toggle(
-                "is-open",
+            mobileMenu.classList.toggle(
+                "active",
                 isOpen
             );
-
-            /* Accesibilitate */
 
             menuToggle.setAttribute(
                 "aria-expanded",
@@ -42,18 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        /* Închide meniul când apăsăm pe un link */
-
         const mobileLinks =
             mobileMenu.querySelectorAll("a");
+
 
         mobileLinks.forEach((link) => {
 
             link.addEventListener("click", () => {
 
-                mobileMenu.classList.remove("is-open");
+                menuToggle.classList.remove("active");
 
-                menuToggle.classList.remove("is-open");
+                mobileMenu.classList.remove("active");
 
                 menuToggle.setAttribute(
                     "aria-expanded",
@@ -70,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
+
 
 
     /* =========================
@@ -92,9 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.createElement("article");
 
 
-            /* Clasa cardului */
-
             card.className = "package-card";
+
 
             if (packageItem.popular) {
                 card.classList.add("popular");
@@ -123,21 +118,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 packageItem.price !== null
                     ? `
                         <div class="package-price">
-    <span
-        class="price-number"
-        data-price="${packageItem.price}"
-    >
-        0
-    </span>
 
-    <span class="price-currency">
-        lei
-    </span>
-</div>
+                            <span
+                                class="price-number"
+                                data-price="${packageItem.price}"
+                            >
+                                0
+                            </span>
+
+                            <span class="price-currency">
+                                lei
+                            </span>
+
+                        </div>
+                    `
+                    : `
+                        <div class="package-price custom-price">
+                            Cere ofertă
+                        </div>
                     `;
 
 
-            /* Badge recomandat */
+            /* Badge Recomandat */
 
             const popularBadge =
                 packageItem.popular
@@ -149,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     : "";
 
 
-            /* Conținut card */
+            /* Card */
 
             card.innerHTML = `
 
@@ -184,7 +186,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     </a>
 
                 </div>
+
             `;
+
 
             packagesGrid.appendChild(card);
 
@@ -192,163 +196,245 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-});
-
-/* =========================
-   SELECTARE PACHET
-========================= */
-
-const packageButtons =
-    document.querySelectorAll(".package-select");
 
 
-packageButtons.forEach((button) => {
+    /* =========================
+       SELECTARE PACHET
+    ========================= */
 
-    button.addEventListener("click", () => {
-
-        const packageId =
-            button.dataset.package;
+    const packageButtons =
+        document.querySelectorAll(".package-select");
 
 
-        const selectedPackage =
-            CONFIG.packages.find(
-                (item) => item.id === packageId
+    packageButtons.forEach((button) => {
+
+        button.addEventListener("click", () => {
+
+            const packageId =
+                button.dataset.package;
+
+
+            const selectedPackage =
+                CONFIG.packages.find(
+                    (item) =>
+                        item.id === packageId
+                );
+
+
+            if (!selectedPackage) {
+                return;
+            }
+
+
+            let selections = {};
+
+
+            try {
+
+                selections =
+                    JSON.parse(
+                        sessionStorage.getItem(
+                            "photoBoothSelections"
+                        )
+                    ) || {};
+
+            } catch {
+
+                selections = {};
+
+            }
+
+
+            selections.package = {
+
+                id: selectedPackage.id,
+
+                name: selectedPackage.name,
+
+                price: selectedPackage.price
+
+            };
+
+
+            sessionStorage.setItem(
+                "photoBoothSelections",
+                JSON.stringify(selections)
             );
 
+        });
 
-        if (!selectedPackage) {
+    });
+
+
+
+    /* =========================
+       ANIMATIE PRETURI
+    ========================= */
+
+    const priceNumbers =
+        document.querySelectorAll(".price-number");
+
+
+    const animatePrice = (element) => {
+
+        const target =
+            Number(element.dataset.price);
+
+
+        if (!Number.isFinite(target)) {
             return;
         }
 
 
-        /* Citim selecțiile existente */
+        const duration = 900;
 
-        const selections =
-            JSON.parse(
-                sessionStorage.getItem("photoBoothSelections")
-            ) || {};
+        const startTime =
+            performance.now();
 
 
-        /* Salvăm pachetul */
+        const updatePrice = (currentTime) => {
 
-        selections.package = {
-            id: selectedPackage.id,
-            name: selectedPackage.name,
-            price: selectedPackage.price
+            const elapsed =
+                currentTime - startTime;
+
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
+
+
+            /*
+               Ease-out:
+               rapid la început,
+               mai lent spre final.
+            */
+
+            const eased =
+                1 -
+                Math.pow(
+                    1 - progress,
+                    3
+                );
+
+
+            const currentValue =
+                Math.round(
+                    target * eased
+                );
+
+
+            element.textContent =
+                currentValue.toLocaleString(
+                    "ro-RO"
+                );
+
+
+            if (progress < 1) {
+
+                requestAnimationFrame(
+                    updatePrice
+                );
+
+            } else {
+
+                element.textContent =
+                    target.toLocaleString(
+                        "ro-RO"
+                    );
+
+                element.classList.add(
+                    "price-finished"
+                );
+
+            }
+
         };
 
 
-        /* Salvăm tot obiectul */
-
-        sessionStorage.setItem(
-            "photoBoothSelections",
-            JSON.stringify(selections)
+        requestAnimationFrame(
+            updatePrice
         );
-
-    });
-
-});
-
-/* =========================
-   ANIMATIE PRETURI
-========================= */
-
-const priceNumbers =
-    document.querySelectorAll(".price-number");
-
-
-const animatePrice = (element) => {
-
-    const target =
-        Number(element.dataset.price);
-
-    const duration = 900;
-
-    const startTime =
-        performance.now();
-
-
-    const updatePrice = (currentTime) => {
-
-        const elapsed =
-            currentTime - startTime;
-
-        const progress =
-            Math.min(
-                elapsed / duration,
-                1
-            );
-
-
-        /*
-           Ease-out:
-           rapid la început,
-           lent spre final.
-        */
-
-        const eased =
-            1 - Math.pow(1 - progress, 3);
-
-
-        const currentValue =
-            Math.round(target * eased);
-
-
-        element.textContent =
-            currentValue.toLocaleString("ro-RO");
-
-
-        if (progress < 1) {
-
-            requestAnimationFrame(updatePrice);
-
-        } else {
-
-            element.classList.add(
-                "price-finished"
-            );
-
-        }
 
     };
 
 
-    requestAnimationFrame(updatePrice);
 
-};
+    /* Respectăm setarea de reducere
+       a animațiilor din telefon/browser */
+
+    const prefersReducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
 
 
-const priceObserver =
-    new IntersectionObserver(
+    if (prefersReducedMotion) {
 
-        (entries, observer) => {
+        priceNumbers.forEach((price) => {
 
-            entries.forEach((entry) => {
+            const target =
+                Number(price.dataset.price);
 
-                if (!entry.isIntersecting) {
-                    return;
+            price.textContent =
+                target.toLocaleString("ro-RO");
+
+        });
+
+    } else if ("IntersectionObserver" in window) {
+
+        const priceObserver =
+            new IntersectionObserver(
+
+                (entries, observer) => {
+
+                    entries.forEach((entry) => {
+
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+
+                        animatePrice(
+                            entry.target
+                        );
+
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.5
                 }
 
-
-                animatePrice(entry.target);
-
-                observer.unobserve(
-                    entry.target
-                );
-
-            });
-
-        },
-
-        {
-            threshold: 0.6
-        }
-
-    );
+            );
 
 
-priceNumbers.forEach((price) => {
+        priceNumbers.forEach((price) => {
 
-    priceObserver.observe(price);
+            priceObserver.observe(price);
+
+        });
+
+    } else {
+
+        /*
+           Fallback pentru browsere
+           fără IntersectionObserver.
+        */
+
+        priceNumbers.forEach((price) => {
+
+            animatePrice(price);
+
+        });
+
+    }
 
 });
