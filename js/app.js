@@ -123,14 +123,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 packageItem.price !== null
                     ? `
                         <div class="package-price">
-                            ${packageItem.price}
-                            <span>lei</span>
-                        </div>
-                    `
-                    : `
-                        <div class="package-price custom-price">
-                            Cere ofertă
-                        </div>
+    <span
+        class="price-number"
+        data-price="${packageItem.price}"
+    >
+        0
+    </span>
+
+    <span class="price-currency">
+        lei
+    </span>
+</div>
                     `;
 
 
@@ -243,5 +246,109 @@ packageButtons.forEach((button) => {
         );
 
     });
+
+});
+
+/* =========================
+   ANIMATIE PRETURI
+========================= */
+
+const priceNumbers =
+    document.querySelectorAll(".price-number");
+
+
+const animatePrice = (element) => {
+
+    const target =
+        Number(element.dataset.price);
+
+    const duration = 900;
+
+    const startTime =
+        performance.now();
+
+
+    const updatePrice = (currentTime) => {
+
+        const elapsed =
+            currentTime - startTime;
+
+        const progress =
+            Math.min(
+                elapsed / duration,
+                1
+            );
+
+
+        /*
+           Ease-out:
+           rapid la început,
+           lent spre final.
+        */
+
+        const eased =
+            1 - Math.pow(1 - progress, 3);
+
+
+        const currentValue =
+            Math.round(target * eased);
+
+
+        element.textContent =
+            currentValue.toLocaleString("ro-RO");
+
+
+        if (progress < 1) {
+
+            requestAnimationFrame(updatePrice);
+
+        } else {
+
+            element.classList.add(
+                "price-finished"
+            );
+
+        }
+
+    };
+
+
+    requestAnimationFrame(updatePrice);
+
+};
+
+
+const priceObserver =
+    new IntersectionObserver(
+
+        (entries, observer) => {
+
+            entries.forEach((entry) => {
+
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+
+                animatePrice(entry.target);
+
+                observer.unobserve(
+                    entry.target
+                );
+
+            });
+
+        },
+
+        {
+            threshold: 0.6
+        }
+
+    );
+
+
+priceNumbers.forEach((price) => {
+
+    priceObserver.observe(price);
 
 });
