@@ -559,7 +559,258 @@ h2 {
             rotate(-45deg);
     }
 }
+/* =========================
+   PACKAGES
+========================= */
 
+.packages {
+    padding: 100px 0;
+
+    background: var(--color-white);
+}
+
+.packages-container {
+    width: min(1200px, calc(100% - 40px));
+
+    margin: auto;
+}
+
+
+/* Titlul secțiunii */
+
+.section-heading {
+    max-width: 700px;
+
+    margin-bottom: 55px;
+}
+
+.section-heading h2 {
+    max-width: 650px;
+
+    margin-bottom: 18px;
+}
+
+.section-heading > p:last-child {
+    max-width: 600px;
+
+    color: var(--color-text-light);
+
+    font-size: 1.05rem;
+}
+
+
+/* =========================
+   PACKAGES GRID
+========================= */
+
+.packages-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 24px;
+
+    align-items: stretch;
+}
+
+
+/* =========================
+   PACKAGE CARD
+========================= */
+
+.package-card {
+    position: relative;
+
+    display: flex;
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius-large);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.package-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow-medium);
+
+    border-color: rgba(198, 161, 91, 0.5);
+}
+
+
+/* Conținut */
+
+.package-content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 38px;
+}
+
+
+/* Titlu */
+
+.package-card h3 {
+    font-size: 2rem;
+
+    margin-bottom: 12px;
+}
+
+
+/* Descriere */
+
+.package-description {
+    min-height: 52px;
+
+    color: var(--color-text-light);
+
+    font-size: 0.95rem;
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.package-price {
+    margin: 30px 0;
+
+    font-family: var(--font-title);
+
+    font-size: 3rem;
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+.package-price span {
+    font-family: var(--font-body);
+
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    color: var(--color-text-light);
+}
+
+.custom-price {
+    font-size: 2rem;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.package-features {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 35px;
+
+    list-style: none;
+}
+
+.package-features li {
+    position: relative;
+
+    padding-left: 25px;
+
+    color: var(--color-text-light);
+
+    font-size: 0.95rem;
+}
+
+
+/* Bifa */
+
+.package-features li::before {
+    content: "✓";
+
+    position: absolute;
+
+    left: 0;
+
+    color: var(--color-primary-dark);
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   PACKAGE BUTTON
+========================= */
+
+.package-select {
+    width: 100%;
+
+    margin-top: auto;
+}
+
+
+/* =========================
+   POPULAR PACKAGE
+========================= */
+
+.package-card.popular {
+    background:
+        linear-gradient(
+            180deg,
+            var(--color-primary-light) 0%,
+            var(--color-bg) 45%
+        );
+
+    border-color: var(--color-primary);
+
+    transform: translateY(-10px);
+}
+
+.package-card.popular:hover {
+    transform: translateY(-16px);
+}
+
+
+/* Badge Recomandat */
+
+.package-badge {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    padding: 7px 12px;
+
+    background: var(--color-primary);
+
+    color: var(--color-white);
+
+    border-radius: 100px;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+/* Lăsăm loc pentru badge */
+
+.package-card.popular .package-content {
+    padding-top: 65px;
+}
 
 /* =========================
    MOBILE
@@ -688,6 +939,52 @@ h2 {
     .hero-image img {
         object-position: center;
     }
+
+   /* PACHETE */
+
+.packages {
+    padding: 70px 0;
+}
+
+.packages-container {
+    width: calc(100% - 30px);
+}
+
+.section-heading {
+    margin-bottom: 35px;
+}
+
+.packages-grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+}
+
+.package-card.popular {
+    transform: none;
+}
+
+.package-card.popular:hover {
+    transform: none;
+}
+
+.package-content {
+    padding: 28px;
+}
+
+.package-card.popular .package-content {
+    padding-top: 60px;
+}
+
+.package-description {
+    min-height: auto;
+}
+
+.package-price {
+    margin: 25px 0;
+
+    font-size: 2.7rem;
+}
 }
 
 
