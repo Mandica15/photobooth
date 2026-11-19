@@ -190,3 +190,58 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+/* =========================
+   SELECTARE PACHET
+========================= */
+
+const packageButtons =
+    document.querySelectorAll(".package-select");
+
+
+packageButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const packageId =
+            button.dataset.package;
+
+
+        const selectedPackage =
+            CONFIG.packages.find(
+                (item) => item.id === packageId
+            );
+
+
+        if (!selectedPackage) {
+            return;
+        }
+
+
+        /* Citim selecțiile existente */
+
+        const selections =
+            JSON.parse(
+                sessionStorage.getItem("photoBoothSelections")
+            ) || {};
+
+
+        /* Salvăm pachetul */
+
+        selections.package = {
+            id: selectedPackage.id,
+            name: selectedPackage.name,
+            price: selectedPackage.price
+        };
+
+
+        /* Salvăm tot obiectul */
+
+        sessionStorage.setItem(
+            "photoBoothSelections",
+            JSON.stringify(selections)
+        );
+
+    });
+
+});
