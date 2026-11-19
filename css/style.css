@@ -654,7 +654,7 @@ h2 {
 .price-number.price-finished {
     color: var(--color-primary-dark);
 
-    animation: pricePop 0.45s ease;
+    animation: pricePop 0.65s ease;
 }
 
 @keyframes pricePop {
@@ -663,18 +663,23 @@ h2 {
         transform: scale(1);
     }
 
-    45% {
-        transform: scale(1.12);
+    40% {
+        transform: scale(1.18);
     }
 
-    70% {
-        transform: scale(0.97);
+    65% {
+        transform: scale(0.96);
+    }
+
+    82% {
+        transform: scale(1.05);
     }
 
     100% {
         transform: scale(1);
     }
 }
+
 
 
 /* Personalizat */
