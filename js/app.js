@@ -8,19 +8,19 @@ const mobileMenu = document.getElementById("mobileMenu");
 
 if (menuToggle && mobileMenu) {
 
-    // Deschide / închide meniul
+    // Deschidere / închidere meniu
     menuToggle.addEventListener("click", () => {
 
         const isOpen =
             menuToggle.classList.toggle("active");
 
-        mobileMenu.classList.toggle("active");
+        mobileMenu.classList.toggle("active", isOpen);
 
 
         // Accesibilitate
         menuToggle.setAttribute(
             "aria-expanded",
-            isOpen
+            isOpen ? "true" : "false"
         );
 
         menuToggle.setAttribute(
@@ -33,7 +33,7 @@ if (menuToggle && mobileMenu) {
     });
 
 
-    // Închide meniul după selectarea unui link
+    // Închidere meniu când apăsăm pe un link
     const mobileLinks =
         mobileMenu.querySelectorAll("a");
 
@@ -43,6 +43,7 @@ if (menuToggle && mobileMenu) {
         link.addEventListener("click", () => {
 
             menuToggle.classList.remove("active");
+
             mobileMenu.classList.remove("active");
 
             menuToggle.setAttribute(
@@ -61,56 +62,84 @@ if (menuToggle && mobileMenu) {
 
 }
 
+
+
 /* =========================
    PACHETE
 ========================= */
 
-const packagesGrid = document.getElementById("packagesGrid");
+const packagesGrid =
+    document.getElementById("packagesGrid");
 
 
-if (packagesGrid && typeof CONFIG !== "undefined") {
+if (
+    packagesGrid &&
+    typeof CONFIG !== "undefined" &&
+    Array.isArray(CONFIG.packages)
+) {
 
     CONFIG.packages.forEach((packageItem) => {
 
-        const card = document.createElement("article");
+        const card =
+            document.createElement("article");
+
+
+        /* Clasa cardului */
 
         card.className = "package-card";
 
 
-        // Evidențiem pachetul recomandat
         if (packageItem.popular) {
             card.classList.add("popular");
         }
 
 
-        // Lista beneficiilor
-        const features = packageItem.features
-            .map((feature) => {
-                return `<li>${feature}</li>`;
-            })
-            .join("");
+        /* Beneficii */
+
+        const features =
+            packageItem.features
+                .map((feature) => {
+
+                    return `
+                        <li>
+                            ${feature}
+                        </li>
+                    `;
+
+                })
+                .join("");
 
 
-        // Preț sau text pentru oferta personalizată
-        const price = packageItem.price !== null
-            ? `
-                <div class="package-price">
-                    ${packageItem.price}
-                    <span>lei</span>
-                </div>
-            `
-            : `
-                <div class="package-price custom-price">
-                    Cere ofertă
-                </div>
-            `;
+        /* Preț */
+
+        const price =
+            packageItem.price !== null
+                ? `
+                    <div class="package-price">
+                        ${packageItem.price}
+                        <span>lei</span>
+                    </div>
+                `
+                : `
+                    <div class="package-price custom-price">
+                        Cere ofertă
+                    </div>
+                `;
 
 
-        // Eticheta "Recomandat"
-        const popularBadge = packageItem.popular
-            ? `<div class="package-badge">Recomandat</div>`
-            : "";
+        /* Badge recomandat */
 
+        const popularBadge =
+            packageItem.popular
+                ? `
+                    <div class="package-badge">
+                        Recomandat
+                    </div>
+                `
+                : "";
+
+
+        /* Conținut card */
 
         card.innerHTML = `
 
