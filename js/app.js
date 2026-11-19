@@ -11,6 +11,28 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("mobileMenu");
 
 
+    const closeMobileMenu = () => {
+
+        if (!menuToggle || !mobileMenu) {
+            return;
+        }
+
+        menuToggle.classList.remove("active");
+        mobileMenu.classList.remove("active");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        menuToggle.setAttribute(
+            "aria-label",
+            "Deschide meniul"
+        );
+
+    };
+
+
     if (menuToggle && mobileMenu) {
 
         menuToggle.addEventListener("click", () => {
@@ -44,23 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         mobileLinks.forEach((link) => {
 
-            link.addEventListener("click", () => {
-
-                menuToggle.classList.remove("active");
-
-                mobileMenu.classList.remove("active");
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Deschide meniul"
-                );
-
-            });
+            link.addEventListener(
+                "click",
+                closeMobileMenu
+            );
 
         });
 
@@ -81,6 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
         typeof CONFIG !== "undefined" &&
         Array.isArray(CONFIG.packages)
     ) {
+
+        /*
+           Curățăm containerul înainte
+           de generarea cardurilor.
+        */
+
+        packagesGrid.innerHTML = "";
+
 
         CONFIG.packages.forEach((packageItem) => {
 
@@ -103,9 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     .map((feature) => {
 
                         return `
-                            <li>
-                                ${feature}
-                            </li>
+                            <li>${feature}</li>
                         `;
 
                     })
@@ -151,7 +166,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     : "";
 
 
-            /* Card */
+            /* Text buton */
+
+            const buttonText =
+                packageItem.price !== null
+                    ? "Alege pachetul"
+                    : "Cere ofertă";
+
+
+            /* Conținut card */
 
             card.innerHTML = `
 
@@ -178,11 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         class="btn btn-primary package-select"
                         data-package="${packageItem.id}"
                     >
-                        ${
-                            packageItem.price !== null
-                                ? "Alege pachetul"
-                                : "Cere ofertă"
-                        }
+                        ${buttonText}
                     </a>
 
                 </div>
@@ -209,6 +228,14 @@ document.addEventListener("DOMContentLoaded", () => {
     packageButtons.forEach((button) => {
 
         button.addEventListener("click", () => {
+
+            if (
+                typeof CONFIG === "undefined" ||
+                !Array.isArray(CONFIG.packages)
+            ) {
+                return;
+            }
+
 
             const packageId =
                 button.dataset.package;
@@ -238,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         )
                     ) || {};
 
-            } catch {
+            } catch (error) {
 
                 selections = {};
 
@@ -275,6 +302,23 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".price-number");
 
 
+    const showFinalPrice = (element) => {
+
+        const target =
+            Number(element.dataset.price);
+
+
+        if (!Number.isFinite(target)) {
+            return;
+        }
+
+
+        element.textContent =
+            target.toLocaleString("ro-RO");
+
+    };
+
+
     const animatePrice = (element) => {
 
         const target =
@@ -288,11 +332,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const duration = 900;
 
-        const startTime =
-            performance.now();
+        let startTime = null;
 
 
         const updatePrice = (currentTime) => {
+
+            if (startTime === null) {
+                startTime = currentTime;
+            }
+
 
             const elapsed =
                 currentTime - startTime;
@@ -306,14 +354,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             /*
-               Ease-out:
-               rapid la început,
-               mai lent spre final.
+               Animație ease-out:
+               rapidă la început,
+               lentă spre final.
             */
 
             const eased =
-                1 -
-                Math.pow(
+                1 - Math.pow(
                     1 - progress,
                     3
                 );
@@ -339,10 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } else {
 
-                element.textContent =
-                    target.toLocaleString(
-                        "ro-RO"
-                    );
+                showFinalPrice(element);
 
                 element.classList.add(
                     "price-finished"
@@ -353,16 +397,10 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
 
-        requestAnimationFrame(
-            updatePrice
-        );
+        requestAnimationFrame(updatePrice);
 
     };
 
-
-
-    /* Respectăm setarea de reducere
-       a animațiilor din telefon/browser */
 
     const prefersReducedMotion =
         window.matchMedia(
@@ -373,13 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (prefersReducedMotion) {
 
         priceNumbers.forEach((price) => {
-
-            const target =
-                Number(price.dataset.price);
-
-            price.textContent =
-                target.toLocaleString("ro-RO");
-
+            showFinalPrice(price);
         });
 
     } else if ("IntersectionObserver" in window) {
@@ -396,10 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
 
 
-                        animatePrice(
-                            entry.target
-                        );
-
+                        animatePrice(entry.target);
 
                         observer.unobserve(
                             entry.target
@@ -410,7 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
 
                 {
-                    threshold: 0.5
+                    threshold: 0.35
                 }
 
             );
@@ -423,11 +452,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     } else {
-
-        /*
-           Fallback pentru browsere
-           fără IntersectionObserver.
-        */
 
         priceNumbers.forEach((price) => {
 
