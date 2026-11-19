@@ -330,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        const duration = 900;
+        const duration = 2000;
 
         let startTime = null;
 
@@ -439,7 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
 
                 {
-                    threshold: 0.35
+                    threshold: 0.65
                 }
 
             );
