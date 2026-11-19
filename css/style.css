@@ -376,7 +376,7 @@ h2 {
 ========================= */
 
 .menu-toggle {
-    display: none;
+    display: flex;
 
     position: relative;
 
@@ -445,55 +445,71 @@ h2 {
     top: 27px;
 }
 
+/* =========================
+   HAMBURGER
+========================= */
+
+.menu-toggle {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+/* Cele 3 linii */
+
+.menu-toggle span {
+    display: block;
+
+    width: 22px;
+    height: 2px;
+
+    background: var(--color-text);
+
+    border-radius: 10px;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.2s ease;
+}
+
 
 /* =========================
    HAMBURGER DESCHIS
 ========================= */
 
-.menu-toggle.active {
-    border-color: var(--color-primary);
-
-    background: var(--color-white);
-
-    box-shadow: var(--shadow-small);
-
-    transform: rotate(90deg);
-}
-
-
-/* Prima linie formează X */
-
 .menu-toggle.active span:nth-child(1) {
-    top: 20px;
-
     transform:
-        translateX(-50%)
+        translateY(6px)
         rotate(45deg);
 }
-
-
-/* Linia din mijloc dispare */
 
 .menu-toggle.active span:nth-child(2) {
     opacity: 0;
 
-    transform:
-        translateX(-50%)
-        scale(0);
+    transform: scaleX(0);
 }
-
-
-/* Ultima linie formează X */
 
 .menu-toggle.active span:nth-child(3) {
-    top: 20px;
-
     transform:
-        translateX(-50%)
+        translateY(-6px)
         rotate(-45deg);
 }
-
-
 /* =========================
    MOBILE MENU
 ========================= */
