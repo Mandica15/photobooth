@@ -3,7 +3,6 @@
 ========================= */
 
 :root {
-    /* Culori */
     --color-bg: #FAF8F5;
     --color-white: #FFFFFF;
 
@@ -16,23 +15,19 @@
 
     --color-border: #E8E2DA;
 
-    /* Fonturi */
     --font-title: "Playfair Display", serif;
     --font-body: "Inter", sans-serif;
 
-    /* Colțuri */
     --radius-small: 12px;
     --radius-medium: 20px;
     --radius-large: 30px;
 
-    /* Umbre */
     --shadow-small:
         0 5px 20px rgba(0, 0, 0, 0.05);
 
     --shadow-medium:
         0 15px 40px rgba(0, 0, 0, 0.08);
 
-    /* Tranziții */
     --transition: 0.25s ease;
 }
 
@@ -61,6 +56,7 @@ body {
 }
 
 img {
+    display: block;
     max-width: 100%;
 }
 
@@ -262,7 +258,7 @@ h2 {
 
     white-space: nowrap;
 
-    transition: var(--transition);
+    transition: color 0.25s ease;
 }
 
 .nav-menu a:hover {
@@ -316,10 +312,6 @@ h2 {
     white-space: nowrap;
 }
 
-.contact-mobile {
-    display: none;
-}
-
 
 /* =========================
    HAMBURGER
@@ -328,114 +320,68 @@ h2 {
 .menu-toggle {
     display: none;
 
-    position: relative;
-
-    width: 46px;
-    height: 46px;
-
-    flex-shrink: 0;
-
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    gap: 5px;
+    width: 44px;
+    height: 44px;
 
     padding: 0;
 
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
+    background: transparent;
 
-    background: var(--color-white);
-
-    color: var(--color-text);
+    border: none;
 
     cursor: pointer;
 
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 4px;
+
     -webkit-tap-highlight-color: transparent;
-
-    appearance: none;
-    -webkit-appearance: none;
-
-    transition:
-        background-color 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
-}
-
-
-/* Hover doar pe dispozitive care au mouse */
-
-@media (hover: hover) and (pointer: fine) {
-
-    .menu-toggle:hover {
-        background: var(--color-primary-light);
-        border-color: var(--color-primary);
-    }
-}
-
-
-/* Eliminăm efectul persistent de tap de pe telefon */
-
-.menu-toggle:active {
-    background: var(--color-white);
-}
-
-.menu-toggle:focus {
-    background: var(--color-white);
-}
-
-.menu-toggle:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 3px;
 }
 
 .menu-toggle span {
     display: block;
 
-    width: 19px;
+    width: 22px;
     height: 2px;
 
     flex-shrink: 0;
 
-    border-radius: 10px;
-
     background: var(--color-text);
 
-    transform-origin: center;
+    border-radius: 10px;
 
     transition:
         transform 0.3s ease,
-        opacity 0.2s ease,
-        width 0.3s ease;
+        opacity 0.2s ease;
 }
 
 
-/* =========================
-   HAMBURGER -> X
-========================= */
+/* Hamburger -> X */
 
-.menu-toggle.is-open {
-    background: var(--color-white);
-    border-color: var(--color-border);
-}
-
-.menu-toggle.is-open span:nth-child(1) {
+.menu-toggle.active span:nth-child(1) {
     transform:
-        translateY(7px)
+        translateY(6px)
         rotate(45deg);
 }
 
-.menu-toggle.is-open span:nth-child(2) {
+.menu-toggle.active span:nth-child(2) {
     opacity: 0;
 
     transform: scaleX(0);
 }
 
-.menu-toggle.is-open span:nth-child(3) {
+.menu-toggle.active span:nth-child(3) {
     transform:
-        translateY(-7px)
+        translateY(-6px)
         rotate(-45deg);
+}
+
+.menu-toggle:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 
@@ -520,20 +466,319 @@ h2 {
 }
 
 .hero-image img {
-    display: block;
-
     width: 100%;
     height: 100%;
 
     object-fit: cover;
     object-position: center;
 
-    transition:
-        transform 0.7s ease;
+    transition: transform 0.7s ease;
 }
 
 .hero-image:hover img {
     transform: scale(1.025);
+}
+
+
+/* =========================
+   PACKAGES
+========================= */
+
+.packages {
+    padding: 100px 0;
+
+    background: var(--color-white);
+}
+
+.packages-container {
+    width: min(1200px, calc(100% - 40px));
+
+    margin: auto;
+}
+
+
+/* Titlu secțiune */
+
+.section-heading {
+    max-width: 700px;
+
+    margin-bottom: 55px;
+}
+
+.section-heading h2 {
+    max-width: 650px;
+
+    margin-bottom: 18px;
+}
+
+.section-heading > p:last-child {
+    max-width: 600px;
+
+    color: var(--color-text-light);
+
+    font-size: 1.05rem;
+}
+
+
+/* =========================
+   PACKAGES GRID
+========================= */
+
+.packages-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+
+    align-items: stretch;
+}
+
+
+/* =========================
+   PACKAGE CARD
+========================= */
+
+.package-card {
+    position: relative;
+
+    display: flex;
+
+    min-width: 0;
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius-large);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.package-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow-medium);
+
+    border-color: rgba(198, 161, 91, 0.5);
+}
+
+.package-content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 38px;
+}
+
+.package-card h3 {
+    margin-bottom: 12px;
+
+    font-size: 2rem;
+}
+
+.package-description {
+    min-height: 52px;
+
+    color: var(--color-text-light);
+
+    font-size: 0.95rem;
+}
+
+
+/* =========================
+   PACKAGE PRICE
+========================= */
+
+.package-price {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 5px;
+
+    margin: 30px 0;
+
+    font-family: var(--font-title);
+
+    font-size: 3rem;
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+.package-price span {
+    font-family: var(--font-body);
+}
+
+
+/* Numărul animat */
+
+.price-number {
+    display: inline-block;
+
+    min-width: 2ch;
+
+    font-family: var(--font-title);
+
+    font-size: inherit;
+    font-weight: 600;
+
+    color: var(--color-text);
+
+    transform-origin: center;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.price-currency {
+    font-family: var(--font-body);
+
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    color: var(--color-text-light);
+}
+
+
+/* Final animație */
+
+.price-number.price-finished {
+    color: var(--color-primary-dark);
+
+    animation: pricePop 0.45s ease;
+}
+
+@keyframes pricePop {
+
+    0% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.12);
+    }
+
+    70% {
+        transform: scale(0.97);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* Personalizat */
+
+.custom-price {
+    font-size: 2rem;
+}
+
+
+/* =========================
+   PACKAGE FEATURES
+========================= */
+
+.package-features {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 35px;
+
+    list-style: none;
+}
+
+.package-features li {
+    position: relative;
+
+    padding-left: 25px;
+
+    color: var(--color-text-light);
+
+    font-size: 0.95rem;
+}
+
+.package-features li::before {
+    content: "✓";
+
+    position: absolute;
+
+    left: 0;
+
+    color: var(--color-primary-dark);
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   PACKAGE BUTTON
+========================= */
+
+.package-select {
+    width: 100%;
+
+    margin-top: auto;
+}
+
+
+/* =========================
+   POPULAR PACKAGE
+========================= */
+
+.package-card.popular {
+    background:
+        linear-gradient(
+            180deg,
+            var(--color-primary-light) 0%,
+            var(--color-bg) 45%
+        );
+
+    border-color: var(--color-primary);
+
+    transform: translateY(-10px);
+}
+
+.package-card.popular:hover {
+    transform: translateY(-16px);
+}
+
+.package-badge {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    padding: 7px 12px;
+
+    background: var(--color-primary);
+
+    color: var(--color-white);
+
+    border-radius: 100px;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+.package-card.popular .package-content {
+    padding-top: 65px;
 }
 
 
@@ -543,6 +788,8 @@ h2 {
 
 @media (max-width: 1000px) {
 
+    /* NAV */
+
     .nav-menu {
         display: none;
     }
@@ -551,15 +798,12 @@ h2 {
         display: flex;
     }
 
-    .hero-container {
-        grid-template-columns:
-            minmax(0, 1fr)
-            minmax(320px, 0.8fr);
 
-        gap: 40px;
-    }
+    /* MOBILE MENU */
 
     .mobile-menu {
+        display: flex;
+
         position: absolute;
 
         top: 100%;
@@ -569,6 +813,8 @@ h2 {
 
         padding: 12px 20px 24px;
 
+        flex-direction: column;
+
         background: rgba(250, 248, 245, 0.98);
 
         backdrop-filter: blur(15px);
@@ -576,12 +822,16 @@ h2 {
 
         border-bottom: 1px solid var(--color-border);
 
-        flex-direction: column;
+        box-shadow:
+            0 15px 30px rgba(0, 0, 0, 0.05);
 
         opacity: 0;
+
         visibility: hidden;
 
         transform: translateY(-10px);
+
+        pointer-events: none;
 
         transition:
             opacity 0.25s ease,
@@ -589,13 +839,14 @@ h2 {
             visibility 0.25s ease;
     }
 
-    .mobile-menu.is-open {
-        display: flex;
-
+    .mobile-menu.active {
         opacity: 1;
+
         visibility: visible;
 
         transform: translateY(0);
+
+        pointer-events: auto;
     }
 
     .mobile-menu a {
@@ -616,6 +867,34 @@ h2 {
 
     .mobile-menu a:last-child {
         border-bottom: none;
+
+        color: var(--color-primary-dark);
+    }
+
+
+    /* HERO */
+
+    .hero-container {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(320px, 0.8fr);
+
+        gap: 40px;
+    }
+
+
+    /* PACKAGES */
+
+    .packages-grid {
+        gap: 18px;
+    }
+
+    .package-content {
+        padding: 30px;
+    }
+
+    .package-card.popular .package-content {
+        padding-top: 60px;
     }
 }
 
@@ -645,21 +924,7 @@ h2 {
     }
 
     .nav-contact {
-        width: auto;
-
-        min-height: 42px;
-
-        padding: 9px 16px;
-
-        font-size: 0.85rem;
-    }
-
-    .contact-desktop {
         display: none;
-    }
-
-    .contact-mobile {
-        display: inline;
     }
 
     .menu-toggle {
@@ -699,7 +964,8 @@ h2 {
     .hero h1 {
         max-width: none;
 
-        font-size: clamp(2.8rem, 12.5vw, 4rem);
+        font-size:
+            clamp(2.8rem, 12.5vw, 4rem);
 
         line-height: 1.02;
 
@@ -719,7 +985,7 @@ h2 {
     }
 
 
-    /* BUTOANE HERO */
+    /* HERO BUTTONS */
 
     .hero .button-group {
         margin-top: 30px;
@@ -744,8 +1010,51 @@ h2 {
         border-radius: var(--radius-medium);
     }
 
-    .hero-image img {
-        object-position: center;
+
+    /* PACKAGES */
+
+    .packages {
+        padding: 70px 0;
+    }
+
+    .packages-container {
+        width: calc(100% - 30px);
+    }
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+    .packages-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .package-card.popular {
+        transform: none;
+    }
+
+    .package-card.popular:hover {
+        transform: none;
+    }
+
+    .package-content {
+        padding: 28px;
+    }
+
+    .package-card.popular .package-content {
+        padding-top: 60px;
+    }
+
+    .package-description {
+        min-height: auto;
+    }
+
+    .package-price {
+        margin: 25px 0;
+
+        font-size: 2.7rem;
     }
 }
 
@@ -764,12 +1073,6 @@ h2 {
         font-size: 0.95rem;
     }
 
-    .nav-contact {
-        padding: 8px 13px;
-
-        font-size: 0.8rem;
-    }
-
     .menu-toggle {
         width: 40px;
         height: 40px;
@@ -781,6 +1084,18 @@ h2 {
 
     .hero h1 {
         font-size: 2.7rem;
+    }
+
+    .packages-container {
+        width: calc(100% - 24px);
+    }
+
+    .package-content {
+        padding: 24px;
+    }
+
+    .package-card.popular .package-content {
+        padding-top: 58px;
     }
 }
 
@@ -804,47 +1119,4 @@ h2 {
 
         animation: none !important;
     }
-}
-/* =========================
-   PRICE ANIMATION
-========================= */
-
-.price-number {
-    display: inline-block;
-
-    min-width: 2ch;
-
-    color: var(--color-text);
-
-    transition:
-        color 0.3s ease,
-        transform 0.3s ease;
-}
-
-.price-number.price-finished {
-    color: var(--color-primary-dark);
-
-    animation:
-        pricePop 0.45s ease;
-}
-
-.price-currency {
-    margin-left: 4px;
-}
-
-
-@keyframes pricePop {
-
-    0% {
-        transform: scale(1);
-    }
-
-    45% {
-        transform: scale(1.12);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-
 }
