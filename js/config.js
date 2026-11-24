@@ -3,6 +3,13 @@
 ========================= */
 
 const CONFIG = {
+    googleScriptUrl:"https://script.google.com/macros/s/AKfycbzXf-sPfHLA6ZikTzFpb4cRPLrXJU7SypvwPwVuyx-_jpiaTMXreVaNBAi0e7oH5N5DwA/exec",
+    business: {
+        name: "Cabina Foto",
+        email: "mandica.alex05@gmail.com",
+        whatsapp: "40725434875"
+       
+    },
 
     packages: [
 
@@ -49,6 +56,22 @@ const CONFIG = {
                 "Recuzită inclusă",
                 "Opțiuni adaptate evenimentului",
                 "Ofertă personalizată"
+            ]
+        },
+        
+        {
+            id: "nenumarate",
+            name: "Ore nenumarate",
+            price: 300,
+            popular: false,
+            description: "Numa' asa, daca e.",
+
+            features: [
+                "Cabină foto timp de 4 ore",
+                "Fotografii nelimitate",
+                "Template personalizat",
+                "Recuzită inclusă",
+                "Asistență pe durata evenimentului"
             ]
         }
 
