@@ -68,7 +68,7 @@ const CONFIG = {
             description: "Numa' asa, daca e.",
 
             features: [
-                "Cabină foto timp de 4 ore",
+                "Cabină foto pe durata evenimentului",
                 "Fotografii nelimitate",
                 "Template personalizat",
                 "Recuzită inclusă",
