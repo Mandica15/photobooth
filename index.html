@@ -1,233 +1,614 @@
-<form class="contact-form" id="contactForm">
+<!DOCTYPE html>
+<html lang="ro">
 
-    <div class="contact-fields">
+<head>
+    <meta charset="UTF-8">
 
-        <!-- NUME -->
-        <div class="form-field">
-
-            <label for="contactName">
-                Numele tău
-            </label>
-
-            <input
-                type="text"
-                id="contactName"
-                name="name"
-                autocomplete="name"
-                placeholder="Ex: Alexandru Popescu"
-                required
-            >
-
-        </div>
-
-
-        <!-- TELEFON -->
-        <div class="form-field">
-
-            <label for="contactPhone">
-                Număr de telefon
-            </label>
-
-            <input
-                type="tel"
-                id="contactPhone"
-                name="phone"
-                autocomplete="tel"
-                placeholder="Ex: 0722 123 456"
-                required
-            >
-
-        </div>
-
-
-        <!-- EMAIL -->
-        <div class="form-field">
-
-            <label for="contactEmail">
-                Adresa de email
-            </label>
-
-            <input
-                type="email"
-                id="contactEmail"
-                name="email"
-                autocomplete="email"
-                placeholder="Ex: nume@email.ro"
-                required
-            >
-
-        </div>
-
-
-        <!-- TIP EVENIMENT -->
-        <div class="form-field">
-
-            <label for="eventType">
-                Tipul evenimentului
-            </label>
-
-            <select
-                id="eventType"
-                name="eventType"
-                required
-            >
-
-                <option
-                    value=""
-                    selected
-                    disabled
-                >
-                    Alege o variantă
-                </option>
-
-                <option value="Nuntă">
-                    Nuntă
-                </option>
-
-                <option value="Botez">
-                    Botez
-                </option>
-
-                <option value="Majorat">
-                    Majorat
-                </option>
-
-                <option value="Cununie">
-                    Cununie
-                </option>
-
-                <option value="Aniversare">
-                    Aniversare
-                </option>
-
-                <option value="Eveniment corporate">
-                    Eveniment corporate
-                </option>
-
-                <option value="Alt tip de eveniment">
-                    Alt tip de eveniment
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- DATA -->
-        <div class="form-field">
-
-            <label for="eventDate">
-                Data evenimentului
-            </label>
-
-            <input
-                type="date"
-                id="eventDate"
-                name="eventDate"
-            >
-
-        </div>
-
-
-        <!-- LOCATIE -->
-        <div class="form-field">
-
-            <label for="eventLocation">
-                Locația evenimentului
-            </label>
-
-            <input
-                type="text"
-                id="eventLocation"
-                name="location"
-                placeholder="Ex: Florești, Wonderland"
-                required
-            >
-
-        </div>
-
-
-        <!-- PACHET -->
-        <div class="form-field form-field-full">
-
-            <label for="contactPackage">
-                Pachet
-            </label>
-
-            <select
-                id="contactPackage"
-                name="package"
-                required
-            >
-
-                <option
-                    value=""
-                    selected
-                    disabled
-                >
-                    Alege pachetul
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- MESAJ -->
-        <div class="form-field form-field-full">
-
-            <label for="contactMessage">
-                Mesajul tău
-            </label>
-
-            <textarea
-                id="contactMessage"
-                name="message"
-                rows="5"
-                placeholder="Spune-ne orice alt detaliu important despre eveniment..."
-            ></textarea>
-
-        </div>
-
-    </div>
-
-
-    <!-- HONEYPOT ANTI-SPAM -->
-    <div
-        class="honeypot"
-        aria-hidden="true"
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
     >
 
-        <label for="contactWebsite">
-            Website
-        </label>
+    <title>Cabină Foto</title>
 
-        <input
-            type="text"
-            id="contactWebsite"
-            name="website"
-            tabindex="-1"
-            autocomplete="off"
+    <meta
+        name="description"
+        content="Cabină foto pentru nunți, botezuri, majorate, aniversări și evenimente corporate."
+    >
+
+    <!-- Fonturi -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="site-header">
+
+        <div class="navbar">
+
+            <!-- Logo -->
+
+            <a
+                href="#acasa"
+                class="logo"
+            >
+                CABINA FOTO
+            </a>
+
+
+            <!-- Meniu desktop -->
+
+            <nav class="nav-menu">
+
+                <a href="#acasa">
+                    Acasă
+                </a>
+
+                <a href="#pachete">
+                    Pachete
+                </a>
+
+                <a href="#modele">
+                    Modele
+                </a>
+
+                <a href="#panouri">
+                    Panouri
+                </a>
+
+                <a href="#cum-functioneaza">
+                    Cum funcționează
+                </a>
+
+                <a href="#galerie">
+                    Galerie
+                </a>
+
+            </nav>
+
+
+            <!-- Acțiuni dreapta -->
+
+            <div class="nav-actions">
+
+                <a
+                    href="#contact"
+                    class="btn btn-primary nav-contact"
+                >
+                    Cere ofertă
+                </a>
+
+
+                <!-- Hamburger mobil -->
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Deschide meniul"
+                    aria-expanded="false"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Meniu mobil -->
+
+        <nav
+            class="mobile-menu"
+            id="mobileMenu"
         >
 
-    </div>
+            <a href="#acasa">
+                Acasă
+            </a>
+
+            <a href="#pachete">
+                Pachete
+            </a>
+
+            <a href="#modele">
+                Modele
+            </a>
+
+            <a href="#panouri">
+                Panouri
+            </a>
+
+            <a href="#cum-functioneaza">
+                Cum funcționează
+            </a>
+
+            <a href="#galerie">
+                Galerie
+            </a>
+
+            <a href="#contact">
+                Cere ofertă
+            </a>
+
+        </nav>
+
+    </header>
 
 
-    <!-- BUTON TRIMITERE -->
-    <button
-        class="btn btn-primary contact-submit"
-        type="submit"
-    >
-        Cere o ofertă
-    </button>
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
 
 
-    <!-- MESAJ CONFIRMARE / EROARE -->
-    <p
-        class="contact-status"
-        id="contactStatus"
-        role="status"
-        aria-live="polite"
-    ></p>
+        <!-- =========================
+             HERO
+        ========================== -->
 
-</form>
+        <section
+            class="hero"
+            id="acasa"
+        >
+
+            <div class="hero-container">
+
+
+                <!-- Text -->
+
+                <div class="hero-content">
+
+                    <p class="eyebrow">
+                        CABINĂ FOTO PENTRU EVENIMENTE
+                    </p>
+
+
+                    <h1>
+
+                        Amintiri care rămân.
+
+                        <span>
+                            Distracție care începe aici.
+                        </span>
+
+                    </h1>
+
+
+                    <p class="lead">
+                        Cabină foto pentru momentele pe care vrei să le păstrezi.
+                    </p>
+
+
+                    <div class="button-group">
+
+                        <a
+                            href="#pachete"
+                            class="btn btn-primary"
+                        >
+                            Vezi pachetele
+                        </a>
+
+
+                        <a
+                            href="#contact"
+                            class="btn btn-secondary"
+                        >
+                            Cere o ofertă
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Imagine -->
+
+                <div class="hero-image">
+
+                    <img
+                        src="assets/images/hero.jpg"
+                        alt="Cabină foto la eveniment"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             PACHETE
+        ========================== -->
+
+        <section
+            class="packages"
+            id="pachete"
+        >
+
+            <div class="packages-container">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        PACHETE
+                    </p>
+
+
+                    <h2>
+                        Alege varianta potrivită
+                        pentru evenimentul tău.
+                    </h2>
+
+
+                    <p>
+                        De la petreceri restrânse până la evenimente
+                        care țin toată noaptea. Alegem împreună
+                        varianta potrivită.
+                    </p>
+
+                </div>
+
+
+                <!--
+                    Pachetele sunt generate
+                    automat din config.js
+                -->
+
+                <div
+                    class="packages-grid"
+                    id="packagesGrid"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section
+            class="contact"
+            id="contact"
+        >
+
+            <div class="contact-container">
+
+
+                <!-- Introducere -->
+
+                <div class="contact-intro">
+
+                    <p class="eyebrow">
+                        CONTACT
+                    </p>
+
+
+                    <h2>
+
+                        Hai să păstrăm
+
+                        <span>
+                            momentele frumoase.
+                        </span>
+
+                    </h2>
+
+
+                    <p>
+                        Spune-ne câteva detalii despre evenimentul tău,
+                        iar noi revenim cu o ofertă potrivită.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================
+                     FORMULAR
+                ========================== -->
+
+                <form
+                    id="contactForm"
+                    class="contact-form"
+                >
+
+
+                    <!-- Anti-spam -->
+
+                    <div
+                        class="honeypot"
+                        aria-hidden="true"
+                    >
+
+                        <label for="website">
+                            Website
+                        </label>
+
+                        <input
+                            type="text"
+                            id="website"
+                            name="website"
+                            tabindex="-1"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+
+                    <!-- Nume -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Nume *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Numele tău"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Telefon -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Telefon *
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="07xx xxx xxx"
+                            autocomplete="tel"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="exemplu@email.ro"
+                            autocomplete="email"
+                        >
+
+                    </div>
+
+
+
+                    <!-- Tip eveniment -->
+
+                    <div class="form-group">
+
+                        <label for="eventType">
+                            Tip eveniment *
+                        </label>
+
+                        <select
+                            id="eventType"
+                            name="eventType"
+                            required
+                        >
+
+                            <option value="">
+                                Alege evenimentul
+                            </option>
+
+                            <option value="Nuntă">
+                                Nuntă
+                            </option>
+
+                            <option value="Botez">
+                                Botez
+                            </option>
+
+                            <option value="Majorat">
+                                Majorat
+                            </option>
+
+                            <option value="Cununie">
+                                Cununie
+                            </option>
+
+                            <option value="Aniversare">
+                                Aniversare
+                            </option>
+
+                            <option value="Corporate">
+                                Corporate
+                            </option>
+
+                            <option value="Alt eveniment">
+                                Alt eveniment
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Data -->
+
+                    <div class="form-group">
+
+                        <label for="eventDate">
+                            Data evenimentului *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="eventDate"
+                            name="eventDate"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Locație -->
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Locație *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            placeholder="Ex: Florești, Wonderland"
+                            autocomplete="address-level2"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Pachet -->
+
+                    <div class="form-group form-group-full">
+
+                        <label for="package">
+                            Pachet
+                        </label>
+
+                        <select
+                            id="package"
+                            name="package"
+                        >
+
+                            <option value="">
+                                Alege pachetul
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Mesaj -->
+
+                    <div class="form-group form-group-full">
+
+                        <label for="message">
+                            Mesaj
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="3"
+                            placeholder="Spune-ne câteva detalii despre eveniment..."
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <!-- Submit -->
+
+                    <div class="form-submit">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="submitButton"
+                        >
+                            Cere oferta
+                        </button>
+
+
+                        <p
+                            class="form-status"
+                            id="formStatus"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="js/config.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <script src="js/contact.js"></script>
+
+</body>
+
+</html>
