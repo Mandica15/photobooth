@@ -288,6 +288,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 JSON.stringify(selections)
             );
 
+            const packageField =
+                document.querySelector(
+                    '#contactForm [name="package"]'
+                );
+
+            if (packageField) {
+                packageField.value = selectedPackage.id;
+            }
+
         });
 
     });
