@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("contactForm");
-    const status = document.getElementById("contactStatus");
+    const status = document.getElementById("formStatus");
 
     if (!form || !status) {
         return;
@@ -18,6 +18,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     if (packageField) {
+
+        if (
+            typeof CONFIG !== "undefined" &&
+            Array.isArray(CONFIG.packages)
+        ) {
+
+            CONFIG.packages.forEach((packageItem) => {
+
+                const option =
+                    document.createElement("option");
+
+                option.value = packageItem.id;
+                option.textContent = packageItem.name;
+
+                packageField.appendChild(option);
+
+            });
+
+        }
 
         try {
 
@@ -79,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         status.textContent =
             "Trimitem cererea...";
+        status.className = "form-status";
 
 
         /* =========================
@@ -99,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             status.textContent =
                 "Cererea a fost trimisă.";
+            status.classList.add("success");
 
             resetSubmitButton();
 
@@ -144,7 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             status.textContent =
-                "Cererea a fost trimisă cu succes!";
+                "Cererea a fost expediată. Dacă nu primești un răspuns, contactează-ne direct.";
+            status.classList.add("success");
 
 
             /* =========================
@@ -168,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             status.textContent =
                 "Nu am putut trimite cererea. Te rugăm să încerci din nou.";
+            status.classList.add("error");
 
 
             resetSubmitButton();
