@@ -787,6 +787,279 @@ h2 {
 }
 
 
+/* CONTACT */
+
+.contact {
+    padding: 70px 0;
+}
+
+.contact-container {
+    width: calc(100% - 30px);
+
+    grid-template-columns: 1fr;
+
+    gap: 32px;
+}
+
+.contact-intro {
+    max-width: none;
+
+    padding-top: 0;
+}
+
+.contact-form {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+
+    padding: 24px 20px;
+
+    border-radius: var(--radius-medium);
+}
+
+.form-group-full {
+    grid-column: auto;
+}
+
+.form-submit {
+    grid-column: auto;
+}
+
+.form-submit .btn {
+    min-height: 54px;
+}
+
+
+/* =========================
+   CONTACT INTRO
+========================= */
+
+.contact-intro {
+    max-width: 440px;
+
+    padding-top: 20px;
+}
+
+.contact-intro h2 {
+    margin-bottom: 20px;
+}
+
+.contact-intro h2 span {
+    color: var(--color-primary-dark);
+}
+
+.contact-intro > p:last-child {
+    color: var(--color-text-light);
+
+    font-size: 1.05rem;
+}
+
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+.contact-form {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    padding: clamp(24px, 4vw, 42px);
+
+    background: var(--color-white);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius-large);
+
+    box-shadow: var(--shadow-small);
+}
+
+
+/* =========================
+   FORM GROUP
+========================= */
+
+.form-group {
+    display: flex;
+
+    min-width: 0;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* Mesajul ocupă toată lățimea */
+
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.form-group label {
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+    color: var(--color-text);
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    min-height: 52px;
+
+    padding: 12px 14px;
+
+    color: var(--color-text);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius-small);
+
+    font-family: var(--font-body);
+
+    font-size: 0.95rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+/* Placeholder */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #99938C;
+}
+
+
+/* Select */
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* Textarea */
+
+.form-group textarea {
+    min-height: 130px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+/* Focus */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+
+    background: var(--color-white);
+
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px rgba(198, 161, 91, 0.13);
+}
+
+
+/* =========================
+   SUBMIT
+========================= */
+
+.form-submit {
+    grid-column: 1 / -1;
+
+    margin-top: 5px;
+}
+
+.form-submit .btn {
+    width: 100%;
+}
+
+
+/* =========================
+   FORM STATUS
+========================= */
+
+.form-status {
+    min-height: 24px;
+
+    margin-top: 14px;
+
+    font-size: 0.9rem;
+
+    font-weight: 500;
+
+    text-align: center;
+}
+
+.form-status.sending {
+    color: var(--color-text-light);
+}
+
+.form-status.success {
+    color: #56704A;
+}
+
+.form-status.error {
+    color: #A63D40;
+}
+
+#submitButton:disabled {
+    opacity: 0.65;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+/* =========================
+   ANTI-SPAM
+========================= */
+
+.honeypot {
+    position: absolute !important;
+
+    left: -9999px !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    overflow: hidden !important;
+
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+}
+
+
 /* =========================
    TABLET
 ========================= */
@@ -900,6 +1173,16 @@ h2 {
 
     .package-card.popular .package-content {
         padding-top: 60px;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .contact-intro {
+        max-width: 600px;
+        padding-top: 0;
     }
 }
 
@@ -1061,6 +1344,23 @@ h2 {
 
         font-size: 2.7rem;
     }
+
+    .contact {
+        padding: 70px 0;
+    }
+
+    .contact-container {
+        width: calc(100% - 30px);
+    }
+
+    .contact-fields {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .form-field-full {
+        grid-column: auto;
+    }
 }
 
 
@@ -1095,6 +1395,10 @@ h2 {
         width: calc(100% - 24px);
     }
 
+    .contact-container {
+        width: calc(100% - 24px);
+    }
+
     .package-content {
         padding: 24px;
     }
@@ -1124,4 +1428,56 @@ h2 {
 
         animation: none !important;
     }
+}
+
+/* =========================
+   ANTI-SPAM
+========================= */
+
+.honeypot {
+    position: absolute !important;
+
+    left: -9999px !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    overflow: hidden !important;
+
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+}
+
+/* =========================
+   FORM STATUS
+========================= */
+
+.form-status {
+    min-height: 24px;
+
+    margin-top: 14px;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-status.sending {
+    color: var(--color-text-light);
+}
+
+.form-status.success {
+    color: #56704A;
+}
+
+.form-status.error {
+    color: #A63D40;
+}
+
+#submitButton:disabled {
+    opacity: 0.65;
+
+    cursor: wait;
+
+    transform: none;
 }
