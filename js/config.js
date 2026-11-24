@@ -3,6 +3,7 @@
 ========================= */
 
 const CONFIG = {
+   
     googleScriptUrl:"https://script.google.com/macros/s/AKfycbzXf-sPfHLA6ZikTzFpb4cRPLrXJU7SypvwPwVuyx-_jpiaTMXreVaNBAi0e7oH5N5DwA/exec",
     business: {
         name: "Cabina Foto",
