@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
 
-    
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -19,7 +18,11 @@
 
     <!-- Fonturi -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
@@ -41,13 +44,10 @@
 
         <div class="navbar">
 
-            <!-- Logo -->
             <a href="#acasa" class="logo">
                 CABINA FOTO
             </a>
 
-
-            <!-- Meniu desktop -->
             <nav class="nav-menu">
                 <a href="#acasa">Acasă</a>
                 <a href="#pachete">Pachete</a>
@@ -57,8 +57,6 @@
                 <a href="#galerie">Galerie</a>
             </nav>
 
-
-            <!-- Acțiuni dreapta -->
             <div class="nav-actions">
 
                 <a
@@ -68,8 +66,6 @@
                     Cere ofertă
                 </a>
 
-
-                <!-- Hamburger mobil -->
                 <button
                     class="menu-toggle"
                     id="menuToggle"
@@ -88,8 +84,11 @@
 
 
         <!-- Meniu mobil -->
-        <nav class="mobile-menu" id="mobileMenu">
 
+        <nav
+            class="mobile-menu"
+            id="mobileMenu"
+        >
             <a href="#acasa">Acasă</a>
             <a href="#pachete">Pachete</a>
             <a href="#modele">Modele</a>
@@ -97,7 +96,6 @@
             <a href="#cum-functioneaza">Cum funcționează</a>
             <a href="#galerie">Galerie</a>
             <a href="#contact">Cere ofertă</a>
-
         </nav>
 
     </header>
@@ -115,12 +113,13 @@
              HERO
         ========================== -->
 
-        <section class="hero" id="acasa">
+        <section
+            class="hero"
+            id="acasa"
+        >
 
             <div class="hero-container">
 
-
-                <!-- Hero text -->
                 <div class="hero-content">
 
                     <p class="eyebrow">
@@ -129,6 +128,7 @@
 
                     <h1>
                         Amintiri care rămân.
+
                         <span>
                             Distracție care începe aici.
                         </span>
@@ -137,7 +137,6 @@
                     <p class="lead">
                         Cabină foto pentru momentele pe care vrei să le păstrezi.
                     </p>
-
 
                     <div class="button-group">
 
@@ -160,7 +159,6 @@
                 </div>
 
 
-                <!-- Hero imagine -->
                 <div class="hero-image">
 
                     <img
@@ -170,50 +168,68 @@
 
                 </div>
 
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             PACHETE
+        ========================== -->
+
+        <section
+            class="packages"
+            id="pachete"
+        >
+
+            <div class="packages-container">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        PACHETE
+                    </p>
+
+                    <h2>
+                        Alege varianta potrivită
+                        pentru evenimentul tău.
+                    </h2>
+
+                    <p>
+                        De la petreceri restrânse până la evenimente care țin toată noaptea.
+                        Alegem împreună varianta potrivită.
+                    </p>
+
+                </div>
+
+
+                <!-- Pachetele sunt generate din config.js -->
+
+                <div
+                    class="packages-grid"
+                    id="packagesGrid"
+                ></div>
 
             </div>
 
         </section>
-<!-- =========================
-     PACHETE
-========================== -->
-
-<section class="packages" id="pachete">
-
-    <div class="packages-container">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                PACHETE
-            </p>
-
-            <h2>
-                Alege varianta potrivită
-                pentru evenimentul tău.
-            </h2>
-
-            <p>
-                De la petreceri restrânse până la evenimente care țin toată noaptea.
-                Alegem împreună varianta potrivită.
-            </p>
-
-        </div>
 
 
-        <!-- Aici vom genera automat pachetele din config.js -->
-        <div
-            class="packages-grid"
-            id="packagesGrid"
-        ></div>
 
-    </div>
+        <!-- =========================
+             CONTACT
+        ========================== -->
 
-</section>
-
-        <section class="contact" id="contact">
+        <section
+            class="contact"
+            id="contact"
+        >
 
             <div class="contact-container">
+
+
+                <!-- Introducere -->
 
                 <div class="contact-intro">
 
@@ -233,220 +249,244 @@
 
                 </div>
 
-                <form id="contactForm" class="contact-form">
 
-    <!-- Anti-spam -->
-    <div class="honeypot" aria-hidden="true">
-        <label for="website">Website</label>
+                <!-- Formular -->
 
-        <input
-            type="text"
-            id="website"
-            name="website"
-            tabindex="-1"
-            autocomplete="off"
-        >
-    </div>
+                <form
+                    id="contactForm"
+                    class="contact-form"
+                >
 
+                    <!-- Anti-spam -->
 
-    <!-- Nume -->
-    <div class="form-group">
+                    <div
+                        class="honeypot"
+                        aria-hidden="true"
+                    >
 
-        <label for="name">
-            Nume *
-        </label>
+                        <label for="website">
+                            Website
+                        </label>
 
-        <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Numele tău"
-            required
-        >
+                        <input
+                            type="text"
+                            id="website"
+                            name="website"
+                            tabindex="-1"
+                            autocomplete="off"
+                        >
 
-    </div>
+                    </div>
 
 
-    <!-- Telefon -->
-    <div class="form-group">
+                    <!-- Nume -->
 
-        <label for="phone">
-            Telefon *
-        </label>
+                    <div class="form-group">
 
-        <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="07xx xxx xxx"
-            autocomplete="tel"
-            required
-        >
+                        <label for="name">
+                            Nume *
+                        </label>
 
-    </div>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Numele tău"
+                            autocomplete="name"
+                            required
+                        >
 
-
-    <!-- Email -->
-    <div class="form-group">
-
-        <label for="email">
-            Email
-        </label>
-
-        <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="exemplu@email.ro"
-            autocomplete="email"
-        >
-
-    </div>
+                    </div>
 
 
-    <!-- Tip eveniment -->
-    <div class="form-group">
+                    <!-- Telefon -->
 
-        <label for="eventType">
-            Tip eveniment *
-        </label>
+                    <div class="form-group">
 
-        <select
-            id="eventType"
-            name="eventType"
-            required
-        >
+                        <label for="phone">
+                            Telefon *
+                        </label>
 
-            <option value="">
-                Alege evenimentul
-            </option>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="07xx xxx xxx"
+                            autocomplete="tel"
+                            required
+                        >
 
-            <option value="Nuntă">
-                Nuntă
-            </option>
-
-            <option value="Botez">
-                Botez
-            </option>
-
-            <option value="Majorat">
-                Majorat
-            </option>
-
-            <option value="Cununie">
-                Cununie
-            </option>
-
-            <option value="Aniversare">
-                Aniversare
-            </option>
-
-            <option value="Corporate">
-                Corporate
-            </option>
-
-            <option value="Alt eveniment">
-                Alt eveniment
-            </option>
-
-        </select>
-
-    </div>
+                    </div>
 
 
-    <!-- Data -->
-    <div class="form-group">
+                    <!-- Email -->
 
-        <label for="eventDate">
-            Data evenimentului *
-        </label>
+                    <div class="form-group">
 
-        <input
-            type="date"
-            id="eventDate"
-            name="eventDate"
-            required
-        >
+                        <label for="email">
+                            Email
+                        </label>
 
-    </div>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="exemplu@email.ro"
+                            autocomplete="email"
+                        >
 
-
-    <!-- Locație -->
-    <div class="form-group">
-
-        <label for="location">
-            Locație *
-        </label>
-
-        <input
-            type="text"
-            id="location"
-            name="location"
-            placeholder="Ex: Florești, Wonderland"
-            required
-        >
-
-    </div>
+                    </div>
 
 
-    <!-- Pachet -->
-    <div class="form-group">
+                    <!-- Tip eveniment -->
 
-        <label for="package">
-            Pachet
-        </label>
+                    <div class="form-group">
 
-        <select
-            id="package"
-            name="package"
-        >
+                        <label for="eventType">
+                            Tip eveniment *
+                        </label>
 
-            <option value="">
-                Alege pachetul
-            </option>
+                        <select
+                            id="eventType"
+                            name="eventType"
+                            required
+                        >
 
-        </select>
+                            <option value="">
+                                Alege evenimentul
+                            </option>
 
-    </div>
+                            <option value="Nuntă">
+                                Nuntă
+                            </option>
+
+                            <option value="Botez">
+                                Botez
+                            </option>
+
+                            <option value="Majorat">
+                                Majorat
+                            </option>
+
+                            <option value="Cununie">
+                                Cununie
+                            </option>
+
+                            <option value="Aniversare">
+                                Aniversare
+                            </option>
+
+                            <option value="Corporate">
+                                Corporate
+                            </option>
+
+                            <option value="Alt eveniment">
+                                Alt eveniment
+                            </option>
+
+                        </select>
+
+                    </div>
 
 
-    <!-- Mesaj -->
-    <div class="form-group form-group-full">
+                    <!-- Data -->
 
-        <label for="message">
-            Mesaj
-        </label>
+                    <div class="form-group">
 
-        <textarea
-            id="message"
-            name="message"
-            rows="5"
-            placeholder="Spune-ne câteva detalii despre eveniment..."
-        ></textarea>
+                        <label for="eventDate">
+                            Data evenimentului *
+                        </label>
 
-    </div>
+                        <input
+                            type="date"
+                            id="eventDate"
+                            name="eventDate"
+                            required
+                        >
+
+                    </div>
 
 
-    <!-- Submit -->
-    <div class="form-submit">
+                    <!-- Locație -->
 
-        <button
-            type="submit"
-            class="btn btn-primary"
-            id="submitButton"
-        >
-            Cere oferta
-        </button>
+                    <div class="form-group">
 
-        <p
-            class="form-status"
-            id="formStatus"
-            aria-live="polite"
-        ></p>
+                        <label for="location">
+                            Locație *
+                        </label>
 
-    </div>
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            placeholder="Ex: Florești, Wonderland"
+                            required
+                        >
 
-</form>
+                    </div>
+
+
+                    <!-- Pachet -->
+
+                    <div class="form-group form-group-full">
+
+                        <label for="package">
+                            Pachet
+                        </label>
+
+                        <select
+                            id="package"
+                            name="package"
+                        >
+
+                            <option value="">
+                                Alege pachetul
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Mesaj -->
+
+                    <div class="form-group form-group-full">
+
+                        <label for="message">
+                            Mesaj
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="3"
+                            placeholder="Spune-ne câteva detalii despre eveniment..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <div class="form-submit">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="submitButton"
+                        >
+                            Cere oferta
+                        </button>
+
+                        <p
+                            class="form-status"
+                            id="formStatus"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+                </form>
 
             </div>
 
@@ -459,6 +499,7 @@
     <!-- =========================
          JAVASCRIPT
     ========================== -->
+
     <script src="js/config.js"></script>
     <script src="js/app.js"></script>
     <script src="js/contact.js"></script>
