@@ -1,42 +1,63 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const form = document.getElementById("contactForm");
-    const status = document.getElementById("formStatus");
+    const form =
+        document.getElementById("contactForm");
+
+    const status =
+        document.getElementById("formStatus");
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+    const packageField =
+        document.getElementById("package");
+
 
     if (!form || !status) {
+        console.error("Formularul de contact nu a fost găsit.");
         return;
     }
 
 
     /* =========================
-       COMPLETEAZA PACHETUL
-       DIN SESSION STORAGE
+       PACHETE IN FORMULAR
     ========================= */
 
-    const packageField =
-        form.querySelector('[name="package"]');
+    if (
+        packageField &&
+        typeof CONFIG !== "undefined" &&
+        Array.isArray(CONFIG.packages)
+    ) {
+
+        /*
+         * Evităm dublarea opțiunilor dacă scriptul
+         * este inițializat din nou.
+         */
+
+        packageField.innerHTML = `
+            <option value="">
+                Alege pachetul
+            </option>
+        `;
 
 
-    if (packageField) {
+        CONFIG.packages.forEach((packageItem) => {
 
-        if (
-            typeof CONFIG !== "undefined" &&
-            Array.isArray(CONFIG.packages)
-        ) {
+            const option =
+                document.createElement("option");
 
-            CONFIG.packages.forEach((packageItem) => {
+            option.value =
+                packageItem.id;
 
-                const option =
-                    document.createElement("option");
+            option.textContent =
+                packageItem.name;
 
-                option.value = packageItem.id;
-                option.textContent = packageItem.name;
+            packageField.appendChild(option);
 
-                packageField.appendChild(option);
+        });
 
-            });
 
-        }
+        /* Pachet ales anterior */
 
         try {
 
@@ -61,7 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
 
             console.warn(
-                "Nu am putut citi pachetul selectat."
+                "Nu am putut citi pachetul salvat.",
+                error
             );
 
         }
@@ -70,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================
-       TRIMITERE FORMULAR
+       SUBMIT FORMULAR
     ========================= */
 
     form.addEventListener("submit", async (event) => {
@@ -78,13 +100,57 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
 
-        const submitButton =
-            form.querySelector(
-                'button[type="submit"]'
+        /* Validare HTML */
+
+        if (!form.checkValidity()) {
+
+            form.reportValidity();
+
+            return;
+
+        }
+
+
+        /* Verificăm configurarea */
+
+        if (
+            typeof CONFIG === "undefined" ||
+            !CONFIG.googleScriptUrl
+        ) {
+
+            showError(
+                "Formularul nu este configurat momentan."
             );
 
+            console.error(
+                "CONFIG.googleScriptUrl lipsește."
+            );
 
-        /* Dezactivam temporar butonul */
+            return;
+
+        }
+
+
+        const formData =
+            new FormData(form);
+
+
+        /* Honeypot */
+
+        if (formData.get("website")) {
+
+            showSuccess(
+                "Cererea a fost trimisă."
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           BUTON - LOADING
+        ========================= */
 
         if (submitButton) {
 
@@ -96,59 +162,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        status.className =
+            "form-status sending";
+
         status.textContent =
             "Trimitem cererea...";
-        status.className = "form-status";
 
 
         /* =========================
-           DATE FORMULAR
+           DEBUG
         ========================= */
 
-        const formData =
-            new FormData(form);
+        console.log(
+            "Apps Script URL:",
+            CONFIG.googleScriptUrl
+        );
 
-
-        /* Honeypot anti-spam */
-
-        const website =
-            formData.get("website");
-
-
-        if (website) {
-
-            status.textContent =
-                "Cererea a fost trimisă.";
-            status.classList.add("success");
-
-            resetSubmitButton();
-
-            return;
-
-        }
+        console.log(
+            "Date trimise:",
+            Object.fromEntries(
+                formData.entries()
+            )
+        );
 
 
         /* =========================
-           TRIMITERE GOOGLE SHEETS
+           POST CATRE APPS SCRIPT
         ========================= */
 
         try {
-
-            if (!CONFIG.googleScriptUrl) {
-
-                throw new Error(
-                    "Lipsește googleScriptUrl din config.js"
-                );
-
-            }
-
-
-            /*
-               no-cors este intenționat.
-
-               GitHub Pages trimite formularul
-               către Google Apps Script.
-            */
 
             await fetch(
                 CONFIG.googleScriptUrl,
@@ -157,20 +199,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     mode: "no-cors",
 
-                    body: formData,
-
-                    keepalive: true
+                    body: formData
                 }
             );
 
 
-            status.textContent =
-                "Cererea a fost expediată. Dacă nu primești un răspuns, contactează-ne direct.";
-            status.classList.add("success");
+            showSuccess(
+                "Cererea a fost trimisă cu succes! 📸"
+            );
 
 
             /* =========================
-               WHATSAPP - DOAR TELEFON
+               WHATSAPP PE TELEFON
             ========================= */
 
             if (isMobileDevice()) {
@@ -180,95 +220,79 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
+            /*
+             * Resetăm după ce am construit
+             * mesajul pentru WhatsApp.
+             */
+
+            form.reset();
+
+
         } catch (error) {
 
             console.error(
-                "Eroare formular:",
+                "Eroare la trimiterea formularului:",
                 error
             );
 
 
-            status.textContent =
-                "Nu am putut trimite cererea. Te rugăm să încerci din nou.";
-            status.classList.add("error");
+            showError(
+                "Nu am putut trimite cererea. Încearcă din nou."
+            );
 
+        } finally {
 
-            resetSubmitButton();
+            if (submitButton) {
 
-            return;
+                submitButton.disabled = false;
+
+                submitButton.textContent =
+                    "Cere oferta";
+
+            }
 
         }
-
-
-        resetSubmitButton();
-
-
-        /* =========================
-           RESET FORMULAR
-        ========================= */
-
-        /*
-           Nu facem reset imediat pe telefon
-           înainte de construirea mesajului WhatsApp.
-
-           Mesajul a fost deja construit
-           în openWhatsApp().
-        */
-
-        form.reset();
 
     });
 
 
 
     /* =========================
-       RESET BUTON
+       SUCCESS / ERROR
     ========================= */
 
-    function resetSubmitButton() {
+    function showSuccess(message) {
 
-        if (!submitButtonExists()) {
-            return;
-        }
+        status.textContent =
+            message;
 
-
-        const button =
-            form.querySelector(
-                'button[type="submit"]'
-            );
-
-
-        button.disabled = false;
-
-        button.textContent =
-            "Cere oferta";
+        status.className =
+            "form-status success";
 
     }
 
 
-    function submitButtonExists() {
+    function showError(message) {
 
-        return Boolean(
-            form.querySelector(
-                'button[type="submit"]'
-            )
-        );
+        status.textContent =
+            message;
+
+        status.className =
+            "form-status error";
 
     }
 
 
 
     /* =========================
-       DETECTARE TELEFON
+       TELEFON
     ========================= */
 
     function isMobileDevice() {
 
-        return (
-            window.matchMedia(
-                "(max-width: 768px)"
-            ).matches
-        );
+        return window.matchMedia(
+            "(max-width: 768px)"
+        ).matches;
 
     }
 
@@ -280,13 +304,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openWhatsApp(formData) {
 
-        const whatsappNumber =
-            CONFIG.business.whatsapp;
-
-
-        if (!whatsappNumber) {
+        if (
+            !CONFIG.business ||
+            !CONFIG.business.whatsapp
+        ) {
             return;
         }
+
+
+        const whatsappNumber =
+            CONFIG.business.whatsapp;
 
 
         const name =
@@ -314,14 +341,13 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.get("message") || "";
 
 
-        /* Gasim numele pachetului */
+        /* Numele pachetului */
 
         let packageName =
             packageId;
 
 
         if (
-            typeof CONFIG !== "undefined" &&
             Array.isArray(CONFIG.packages)
         ) {
 
@@ -342,47 +368,63 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* =========================
-           MESAJ WHATSAPP
-        ========================= */
+        /* Mesaj */
 
         const whatsappMessage = [
+
             "Bună! 👋",
+
             "",
+
             "Tocmai am completat formularul pentru cabina foto.",
+
             "",
+
             `Nume: ${name}`,
+
             `Telefon: ${phone}`,
-            `Email: ${email}`,
+
+            `Email: ${email || "-"}`,
+
             `Eveniment: ${eventType}`,
+
             `Data: ${eventDate || "Nespecificată"}`,
-            `Locație: ${location || "Nespecificată"}`,
+
+            `Locație: ${location}`,
+
             `Pachet: ${packageName || "Nespecificat"}`,
+
             "",
+
             "Mesaj:",
+
             message || "-"
+
         ].join("\n");
 
 
+        /* URL WhatsApp CORECT */
+
         const whatsappUrl =
-            `https://wa.me/${whatsappNumber}` +
-            `?text=${encodeURIComponent(
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(
                 whatsappMessage
-            )}`;
+            );
 
 
         /*
-           Mică întârziere pentru ca browserul
-           să pornească cererea către Apps Script
-           înainte să deschidă WhatsApp.
-        */
+         * Dăm puțin timp requestului
+         * către Apps Script să pornească.
+         */
 
         setTimeout(() => {
 
             window.location.href =
                 whatsappUrl;
 
-        }, 500);
+        }, 700);
 
     }
 
