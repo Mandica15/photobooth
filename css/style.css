@@ -891,8 +891,22 @@ li::before {
    CONTACT HEADING
 ========================= */
 
-.contact .section-heading {
+.contact-intro {
+    max-width: 700px;
+
     margin-bottom: 45px;
+}
+
+.contact-intro h2 {
+    margin-bottom: 18px;
+}
+
+.contact-intro > p:last-child {
+    max-width: 600px;
+
+    color: var(--color-text-light);
+
+    font-size: 1.05rem;
 }
 
 
@@ -922,14 +936,7 @@ li::before {
 
     box-shadow:
         var(--shadow-medium);
-}
 
-
-/* =========================
-   CONTACT FIELDS
-========================= */
-
-.contact-fields {
     display: grid;
 
     grid-template-columns:
@@ -944,20 +951,24 @@ li::before {
 
 
 /* =========================
-   FORM FIELD
+   CONTACT FIELDS
 ========================= */
 
-.form-field {
-    display: flex;
-
-    flex-direction: column;
+.form-group {
+    display: grid;
 
     gap: 8px;
 
     min-width: 0;
 }
 
-.form-field-full {
+
+/* =========================
+   FORM FIELD
+========================= */
+
+.form-group-full,
+.form-submit {
     grid-column:
         1 / -1;
 }
@@ -967,7 +978,7 @@ li::before {
    FORM LABELS
 ========================= */
 
-.form-field label {
+.form-group label {
     font-size: 0.88rem;
     font-weight: 600;
 
@@ -980,9 +991,9 @@ li::before {
    INPUTS
 ========================= */
 
-.form-field input,
-.form-field select,
-.form-field textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
 
     min-height: 54px;
@@ -1019,7 +1030,7 @@ li::before {
 
 /* Textarea */
 
-.form-field textarea {
+.form-group textarea {
     min-height: 135px;
 
     resize: vertical;
@@ -1030,24 +1041,24 @@ li::before {
 
 /* Select */
 
-.form-field select {
+.form-group select {
     cursor: pointer;
 }
 
 
 /* Placeholder */
 
-.form-field input::placeholder,
-.form-field textarea::placeholder {
+.form-group input::placeholder,
+.form-group textarea::placeholder {
     color: #A29D96;
 }
 
 
 /* Focus */
 
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
     background:
         var(--color-white);
 
@@ -1069,17 +1080,21 @@ li::before {
    CONTACT SUBMIT
 ========================= */
 
-.contact-submit {
-    width: 100%;
+.form-submit {
+    display: grid;
 
-    margin-top: 28px;
+    gap: 12px;
+}
+
+.form-submit .btn {
+    width: 100%;
 
     min-height: 56px;
 
     font-size: 1rem;
 }
 
-.contact-submit:disabled {
+.form-submit .btn:disabled {
     background:
         var(--color-text-light);
 
@@ -1092,7 +1107,7 @@ li::before {
    CONTACT STATUS
 ========================= */
 
-.contact-status {
+.form-status {
     display: none;
 
     width: 100%;
@@ -1117,23 +1132,18 @@ Mesajul devine vizibil
 când contact.js îi pune text.
 */
 
-.contact-status:not(:empty) {
+.form-status:not(:empty) {
     display: block;
 
     background:
-        var(--color-success-bg);
+        var(--color-bg);
 
     color:
-        var(--color-success);
+        var(--color-text-light);
 
     border:
         1px solid
-        rgba(
-            82,
-            122,
-            90,
-            0.2
-        );
+        var(--color-border);
 
     animation:
         statusAppear
@@ -1143,7 +1153,7 @@ când contact.js îi pune text.
 
 /* Dacă JS adaugă clasa error */
 
-.contact-status.error {
+.form-status.error {
     background:
         var(--color-error-bg);
 
@@ -1162,12 +1172,20 @@ când contact.js îi pune text.
 
 /* Dacă JS adaugă clasa success */
 
-.contact-status.success {
+.form-status.success {
     background:
         var(--color-success-bg);
 
     color:
         var(--color-success);
+
+    border-color:
+        rgba(
+            82,
+            122,
+            90,
+            0.2
+        );
 }
 
 
@@ -1544,20 +1562,21 @@ când contact.js îi pune text.
             var(--radius-medium);
     }
 
-    .contact-fields {
+    .contact-form {
         grid-template-columns:
             1fr;
 
         gap: 20px;
     }
 
-    .form-field-full {
+    .form-group-full,
+    .form-submit {
         grid-column: auto;
     }
 
-    .form-field input,
-    .form-field select,
-    .form-field textarea {
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
         /*
         16px evită zoom-ul automat
         în Safari pe iPhone.
@@ -1565,13 +1584,7 @@ când contact.js îi pune text.
         font-size: 16px;
     }
 
-    .contact-submit {
-        min-height: 56px;
-
-        margin-top: 24px;
-    }
-
-    .contact-status {
+    .form-status {
         font-size: 0.9rem;
     }
 }
