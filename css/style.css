@@ -862,7 +862,220 @@ li::before {
 .package-content {
     padding-top: 65px;
 }
+/* =========================
+   TEMPLATES / MODELE
+========================= */
 
+.templates {
+    padding: 100px 0;
+
+    background: var(--color-bg);
+}
+
+.templates-container {
+    width: min(1200px, calc(100% - 40px));
+
+    margin: auto;
+}
+
+
+/* =========================
+   TEMPLATE FILTERS
+========================= */
+
+.template-filters {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 40px;
+}
+
+.template-filter {
+    min-height: 42px;
+
+    padding: 9px 18px;
+
+    background: var(--color-white);
+
+    color: var(--color-text-light);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 100px;
+
+    font-family: var(--font-body);
+
+    font-size: 0.88rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.template-filter:hover {
+    color: var(--color-text);
+
+    border-color: var(--color-primary);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-small);
+}
+
+
+/* Filtrul selectat */
+
+.template-filter.active {
+    background: var(--color-text);
+
+    color: var(--color-white);
+
+    border-color: var(--color-text);
+}
+
+
+/* =========================
+   TEMPLATES GRID
+========================= */
+
+.templates-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================
+   TEMPLATE CARD
+========================= */
+
+.template-card {
+    position: relative;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    background: var(--color-white);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius-medium);
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.04);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.template-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: var(--shadow-medium);
+
+    border-color:
+        rgba(198, 161, 91, 0.55);
+}
+
+
+/* =========================
+   TEMPLATE IMAGE
+========================= */
+
+.template-image {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    background: var(--color-primary-light);
+}
+
+.template-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.5s ease;
+}
+
+.template-card:hover
+.template-image img {
+    transform: scale(1.04);
+}
+
+
+/* =========================
+   TEMPLATE INFO
+========================= */
+
+.template-info {
+    padding: 18px 20px 20px;
+}
+
+.template-category {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--color-primary-dark);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+}
+
+.template-name {
+    font-family: var(--font-title);
+
+    font-size: 1.35rem;
+    font-weight: 600;
+
+    color: var(--color-text);
+}
+
+
+/* =========================
+   EMPTY CATEGORY
+========================= */
+
+.templates-empty {
+    padding: 40px 20px;
+
+    color: var(--color-text-light);
+
+    text-align: center;
+
+    background: var(--color-white);
+
+    border: 1px dashed var(--color-border);
+
+    border-radius: var(--radius-medium);
+}
 
 /* =========================
    CONTACT
@@ -1376,7 +1589,62 @@ când contact.js îi pune text.
 ========================= */
 
 @media (max-width: 600px) {
+/* MODELE */
 
+.templates {
+    padding: 70px 0;
+}
+
+.templates-container {
+    width: calc(100% - 30px);
+}
+
+
+/* Filtre scrollabile */
+
+.template-filters {
+    flex-wrap: nowrap;
+
+    gap: 8px;
+
+    margin-left: -15px;
+    margin-right: -15px;
+
+    padding: 2px 15px 12px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+.template-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.template-filter {
+    flex: 0 0 auto;
+
+    min-height: 40px;
+
+    padding: 8px 16px;
+}
+
+
+/* Modele */
+
+.templates-grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+}
+
+.template-card:hover {
+    transform: none;
+}
+
+.template-info {
+    padding: 16px 18px 18px;
+}
     /* HEADER */
 
     .navbar {
