@@ -1,5 +1,5 @@
 /* =========================
-   DESIGN SYSTEM 
+   DESIGN SYSTEM
 ========================= */
 
 :root {
@@ -14,6 +14,12 @@
     --color-primary-light: #F1E7D5;
 
     --color-border: #E8E2DA;
+
+    --color-success: #527A5A;
+    --color-success-bg: #EEF6EF;
+
+    --color-error: #A34A4A;
+    --color-error-bg: #FAEEEE;
 
     --font-title: "Playfair Display", serif;
     --font-body: "Inter", sans-serif;
@@ -57,6 +63,7 @@ body {
 
 img {
     display: block;
+
     max-width: 100%;
 }
 
@@ -69,6 +76,7 @@ h1,
 h2,
 h3 {
     font-family: var(--font-title);
+
     line-height: 1.1;
 }
 
@@ -133,6 +141,7 @@ h2 {
     border-radius: 100px;
 
     font-family: var(--font-body);
+
     font-size: 0.95rem;
     font-weight: 600;
 
@@ -150,6 +159,7 @@ h2 {
 
 .btn-primary {
     background: var(--color-text);
+
     color: var(--color-white);
 }
 
@@ -175,6 +185,14 @@ h2 {
     transform: translateY(-2px);
 }
 
+.btn:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
 
 /* =========================
    HEADER
@@ -189,17 +207,23 @@ h2 {
 
     width: 100%;
 
-    background: rgba(250, 248, 245, 0.94);
+    background:
+        rgba(250, 248, 245, 0.94);
 
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 
     border-bottom:
-        1px solid rgba(232, 226, 218, 0.8);
+        1px solid
+        rgba(232, 226, 218, 0.8);
 }
 
 .navbar {
-    width: min(1200px, calc(100% - 40px));
+    width:
+        min(
+            1200px,
+            calc(100% - 40px)
+        );
 
     min-height: 78px;
 
@@ -258,7 +282,8 @@ h2 {
 
     white-space: nowrap;
 
-    transition: color 0.25s ease;
+    transition:
+        color 0.25s ease;
 }
 
 .nav-menu a:hover {
@@ -278,9 +303,11 @@ h2 {
 
     border-radius: 10px;
 
-    background: var(--color-primary);
+    background:
+        var(--color-primary);
 
-    transition: width 0.25s ease;
+    transition:
+        width 0.25s ease;
 }
 
 .nav-menu a:hover::after {
@@ -338,7 +365,8 @@ h2 {
 
     gap: 4px;
 
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color:
+        transparent;
 }
 
 .menu-toggle span {
@@ -349,7 +377,8 @@ h2 {
 
     flex-shrink: 0;
 
-    background: var(--color-text);
+    background:
+        var(--color-text);
 
     border-radius: 10px;
 
@@ -361,27 +390,26 @@ h2 {
 
 /* Hamburger -> X */
 
-.menu-toggle.active span:nth-child(1) {
+.menu-toggle.active
+span:nth-child(1) {
     transform:
         translateY(6px)
         rotate(45deg);
 }
 
-.menu-toggle.active span:nth-child(2) {
+.menu-toggle.active
+span:nth-child(2) {
     opacity: 0;
 
-    transform: scaleX(0);
+    transform:
+        scaleX(0);
 }
 
-.menu-toggle.active span:nth-child(3) {
+.menu-toggle.active
+span:nth-child(3) {
     transform:
         translateY(-6px)
         rotate(-45deg);
-}
-
-.menu-toggle:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
 }
 
 
@@ -399,13 +427,18 @@ h2 {
 ========================= */
 
 .hero {
-    padding: 70px 0 90px;
+    padding:
+        70px 0 90px;
 
     overflow: hidden;
 }
 
 .hero-container {
-    width: min(1200px, calc(100% - 40px));
+    width:
+        min(
+            1200px,
+            calc(100% - 40px)
+        );
 
     margin: auto;
 
@@ -417,7 +450,12 @@ h2 {
 
     align-items: center;
 
-    gap: clamp(45px, 6vw, 90px);
+    gap:
+        clamp(
+            45px,
+            6vw,
+            90px
+        );
 }
 
 .hero-content {
@@ -427,9 +465,15 @@ h2 {
 .hero h1 {
     max-width: 700px;
 
-    font-size: clamp(3rem, 5.5vw, 5rem);
+    font-size:
+        clamp(
+            3rem,
+            5.5vw,
+            5rem
+        );
 
-    letter-spacing: -0.035em;
+    letter-spacing:
+        -0.035em;
 }
 
 .hero h1 span {
@@ -452,17 +496,21 @@ h2 {
 
     width: 100%;
 
-    height: min(680px, 72vh);
+    height:
+        min(680px, 72vh);
 
     min-height: 520px;
 
     overflow: hidden;
 
-    border-radius: var(--radius-large);
+    border-radius:
+        var(--radius-large);
 
-    background: var(--color-primary-light);
+    background:
+        var(--color-primary-light);
 
-    box-shadow: var(--shadow-medium);
+    box-shadow:
+        var(--shadow-medium);
 }
 
 .hero-image img {
@@ -472,11 +520,13 @@ h2 {
     object-fit: cover;
     object-position: center;
 
-    transition: transform 0.7s ease;
+    transition:
+        transform 0.7s ease;
 }
 
 .hero-image:hover img {
-    transform: scale(1.025);
+    transform:
+        scale(1.025);
 }
 
 
@@ -485,19 +535,27 @@ h2 {
 ========================= */
 
 .packages {
-    padding: 100px 0;
+    padding:
+        100px 0;
 
-    background: var(--color-white);
+    background:
+        var(--color-white);
 }
 
 .packages-container {
-    width: min(1200px, calc(100% - 40px));
+    width:
+        min(
+            1200px,
+            calc(100% - 40px)
+        );
 
     margin: auto;
 }
 
 
-/* Titlu secțiune */
+/* =========================
+   SECTION HEADING
+========================= */
 
 .section-heading {
     max-width: 700px;
@@ -511,10 +569,12 @@ h2 {
     margin-bottom: 18px;
 }
 
-.section-heading > p:last-child {
+.section-heading
+> p:last-child {
     max-width: 600px;
 
-    color: var(--color-text-light);
+    color:
+        var(--color-text-light);
 
     font-size: 1.05rem;
 }
@@ -527,7 +587,11 @@ h2 {
 .packages-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
 
     gap: 24px;
 
@@ -546,11 +610,15 @@ h2 {
 
     min-width: 0;
 
-    background: var(--color-bg);
+    background:
+        var(--color-bg);
 
-    border: 1px solid var(--color-border);
+    border:
+        1px solid
+        var(--color-border);
 
-    border-radius: var(--radius-large);
+    border-radius:
+        var(--radius-large);
 
     overflow: hidden;
 
@@ -561,11 +629,19 @@ h2 {
 }
 
 .package-card:hover {
-    transform: translateY(-6px);
+    transform:
+        translateY(-6px);
 
-    box-shadow: var(--shadow-medium);
+    box-shadow:
+        var(--shadow-medium);
 
-    border-color: rgba(198, 161, 91, 0.5);
+    border-color:
+        rgba(
+            198,
+            161,
+            91,
+            0.5
+        );
 }
 
 .package-content {
@@ -586,7 +662,8 @@ h2 {
 .package-description {
     min-height: 52px;
 
-    color: var(--color-text-light);
+    color:
+        var(--color-text-light);
 
     font-size: 0.95rem;
 }
@@ -605,7 +682,8 @@ h2 {
 
     margin: 30px 0;
 
-    font-family: var(--font-title);
+    font-family:
+        var(--font-title);
 
     font-size: 3rem;
     font-weight: 600;
@@ -613,76 +691,66 @@ h2 {
     line-height: 1;
 }
 
-.package-price span {
-    font-family: var(--font-body);
-}
-
-
-/* Numărul animat */
-
 .price-number {
     display: inline-block;
 
     min-width: 2ch;
 
-    font-family: var(--font-title);
+    font-family:
+        var(--font-title);
 
     font-size: inherit;
     font-weight: 600;
 
-    color: var(--color-text);
+    color:
+        var(--color-text);
 
-    transform-origin: center;
-
-    transition:
-        color 0.3s ease,
-        transform 0.3s ease;
+    transform-origin:
+        center;
 }
 
 .price-currency {
-    font-family: var(--font-body);
+    font-family:
+        var(--font-body);
 
     font-size: 0.9rem;
     font-weight: 500;
 
-    color: var(--color-text-light);
+    color:
+        var(--color-text-light);
 }
 
-
-/* Final animație */
-
 .price-number.price-finished {
-    color: var(--color-primary-dark);
+    color:
+        var(--color-primary-dark);
 
-    animation: pricePop 0.65s ease;
+    animation:
+        pricePop 0.65s ease;
 }
 
 @keyframes pricePop {
 
     0% {
-        transform: scale(1);
+        transform:
+            scale(1);
     }
 
     40% {
-        transform: scale(1.18);
+        transform:
+            scale(1.15);
     }
 
-    65% {
-        transform: scale(0.96);
-    }
-
-    82% {
-        transform: scale(1.05);
+    70% {
+        transform:
+            scale(0.97);
     }
 
     100% {
-        transform: scale(1);
+        transform:
+            scale(1);
     }
+
 }
-
-
-
-/* Personalizat */
 
 .custom-price {
     font-size: 2rem;
@@ -710,27 +778,25 @@ h2 {
 
     padding-left: 25px;
 
-    color: var(--color-text-light);
+    color:
+        var(--color-text-light);
 
     font-size: 0.95rem;
 }
 
-.package-features li::before {
+.package-features
+li::before {
     content: "✓";
 
     position: absolute;
 
     left: 0;
 
-    color: var(--color-primary-dark);
+    color:
+        var(--color-primary-dark);
 
     font-weight: 700;
 }
-
-
-/* =========================
-   PACKAGE BUTTON
-========================= */
 
 .package-select {
     width: 100%;
@@ -747,17 +813,22 @@ h2 {
     background:
         linear-gradient(
             180deg,
-            var(--color-primary-light) 0%,
-            var(--color-bg) 45%
+            var(--color-primary-light)
+                0%,
+            var(--color-bg)
+                45%
         );
 
-    border-color: var(--color-primary);
+    border-color:
+        var(--color-primary);
 
-    transform: translateY(-10px);
+    transform:
+        translateY(-10px);
 }
 
 .package-card.popular:hover {
-    transform: translateY(-16px);
+    transform:
+        translateY(-16px);
 }
 
 .package-badge {
@@ -766,92 +837,62 @@ h2 {
     top: 18px;
     right: 18px;
 
-    padding: 7px 12px;
+    padding:
+        7px 12px;
 
-    background: var(--color-primary);
+    background:
+        var(--color-primary);
 
-    color: var(--color-white);
+    color:
+        var(--color-white);
 
     border-radius: 100px;
 
     font-size: 0.68rem;
     font-weight: 700;
 
-    letter-spacing: 0.08em;
+    letter-spacing:
+        0.08em;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 }
 
-.package-card.popular .package-content {
+.package-card.popular
+.package-content {
     padding-top: 65px;
 }
 
 
-/* CONTACT */
+/* =========================
+   CONTACT
+========================= */
 
 .contact {
-    padding: 70px 0;
+    padding:
+        110px 0;
+
+    background:
+        var(--color-bg);
 }
 
 .contact-container {
-    width: calc(100% - 30px);
+    width:
+        min(
+            1100px,
+            calc(100% - 40px)
+        );
 
-    grid-template-columns: 1fr;
-
-    gap: 32px;
-}
-
-.contact-intro {
-    max-width: none;
-
-    padding-top: 0;
-}
-
-.contact-form {
-    grid-template-columns: 1fr;
-
-    gap: 16px;
-
-    padding: 24px 20px;
-
-    border-radius: var(--radius-medium);
-}
-
-.form-group-full {
-    grid-column: auto;
-}
-
-.form-submit {
-    grid-column: auto;
-}
-
-.form-submit .btn {
-    min-height: 54px;
+    margin: auto;
 }
 
 
 /* =========================
-   CONTACT INTRO
+   CONTACT HEADING
 ========================= */
 
-.contact-intro {
-    max-width: 440px;
-
-    padding-top: 20px;
-}
-
-.contact-intro h2 {
-    margin-bottom: 20px;
-}
-
-.contact-intro h2 span {
-    color: var(--color-primary-dark);
-}
-
-.contact-intro > p:last-child {
-    color: var(--color-text-light);
-
-    font-size: 1.05rem;
+.contact .section-heading {
+    margin-bottom: 45px;
 }
 
 
@@ -860,57 +901,78 @@ h2 {
 ========================= */
 
 .contact-form {
-    display: grid;
+    position: relative;
 
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+    padding:
+        clamp(
+            28px,
+            5vw,
+            55px
+        );
 
-    gap: 20px;
+    background:
+        var(--color-white);
 
-    padding: clamp(24px, 4vw, 42px);
+    border:
+        1px solid
+        var(--color-border);
 
-    background: var(--color-white);
+    border-radius:
+        var(--radius-large);
 
-    border: 1px solid var(--color-border);
-
-    border-radius: var(--radius-large);
-
-    box-shadow: var(--shadow-small);
+    box-shadow:
+        var(--shadow-medium);
 }
 
 
 /* =========================
-   FORM GROUP
+   CONTACT FIELDS
 ========================= */
 
-.form-group {
-    display: flex;
+.contact-fields {
+    display: grid;
 
-    min-width: 0;
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        24px 20px;
+}
+
+
+/* =========================
+   FORM FIELD
+========================= */
+
+.form-field {
+    display: flex;
 
     flex-direction: column;
 
     gap: 8px;
+
+    min-width: 0;
 }
 
-
-/* Mesajul ocupă toată lățimea */
-
-.form-group-full {
-    grid-column: 1 / -1;
+.form-field-full {
+    grid-column:
+        1 / -1;
 }
 
 
 /* =========================
-   LABEL
+   FORM LABELS
 ========================= */
 
-.form-group label {
-    font-size: 0.9rem;
-
+.form-field label {
+    font-size: 0.88rem;
     font-weight: 600;
 
-    color: var(--color-text);
+    color:
+        var(--color-text);
 }
 
 
@@ -918,24 +980,33 @@ h2 {
    INPUTS
 ========================= */
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+.form-field input,
+.form-field select,
+.form-field textarea {
     width: 100%;
 
-    min-height: 52px;
+    min-height: 54px;
 
-    padding: 12px 14px;
+    padding:
+        13px 16px;
 
-    color: var(--color-text);
+    border:
+        1px solid
+        var(--color-border);
 
-    background: var(--color-bg);
+    border-radius:
+        var(--radius-small);
 
-    border: 1px solid var(--color-border);
+    outline: none;
 
-    border-radius: var(--radius-small);
+    background:
+        var(--color-bg);
 
-    font-family: var(--font-body);
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-body);
 
     font-size: 0.95rem;
 
@@ -946,102 +1017,181 @@ h2 {
 }
 
 
-/* Placeholder */
+/* Textarea */
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: #99938C;
+.form-field textarea {
+    min-height: 135px;
+
+    resize: vertical;
+
+    line-height: 1.6;
 }
 
 
 /* Select */
 
-.form-group select {
+.form-field select {
     cursor: pointer;
 }
 
 
-/* Textarea */
+/* Placeholder */
 
-.form-group textarea {
-    min-height: 130px;
-
-    resize: vertical;
-
-    line-height: 1.5;
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #A29D96;
 }
 
 
 /* Focus */
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    background:
+        var(--color-white);
 
-    background: var(--color-white);
-
-    border-color: var(--color-primary);
+    border-color:
+        var(--color-primary);
 
     box-shadow:
-        0 0 0 3px rgba(198, 161, 91, 0.13);
+        0 0 0 4px
+        rgba(
+            198,
+            161,
+            91,
+            0.12
+        );
 }
 
 
 /* =========================
-   SUBMIT
+   CONTACT SUBMIT
 ========================= */
 
-.form-submit {
-    grid-column: 1 / -1;
-
-    margin-top: 5px;
-}
-
-.form-submit .btn {
+.contact-submit {
     width: 100%;
+
+    margin-top: 28px;
+
+    min-height: 56px;
+
+    font-size: 1rem;
+}
+
+.contact-submit:disabled {
+    background:
+        var(--color-text-light);
+
+    cursor:
+        wait;
 }
 
 
 /* =========================
-   FORM STATUS
+   CONTACT STATUS
 ========================= */
 
-.form-status {
-    min-height: 24px;
+.contact-status {
+    display: none;
 
-    margin-top: 14px;
+    width: 100%;
 
-    font-size: 0.9rem;
+    margin-top: 18px;
 
-    font-weight: 500;
+    padding:
+        14px 18px;
+
+    border-radius:
+        var(--radius-small);
+
+    font-size: 0.92rem;
+    font-weight: 600;
 
     text-align: center;
 }
 
-.form-status.sending {
-    color: var(--color-text-light);
+
+/*
+Mesajul devine vizibil
+când contact.js îi pune text.
+*/
+
+.contact-status:not(:empty) {
+    display: block;
+
+    background:
+        var(--color-success-bg);
+
+    color:
+        var(--color-success);
+
+    border:
+        1px solid
+        rgba(
+            82,
+            122,
+            90,
+            0.2
+        );
+
+    animation:
+        statusAppear
+        0.35s ease;
 }
 
-.form-status.success {
-    color: #56704A;
+
+/* Dacă JS adaugă clasa error */
+
+.contact-status.error {
+    background:
+        var(--color-error-bg);
+
+    color:
+        var(--color-error);
+
+    border-color:
+        rgba(
+            163,
+            74,
+            74,
+            0.2
+        );
 }
 
-.form-status.error {
-    color: #A63D40;
+
+/* Dacă JS adaugă clasa success */
+
+.contact-status.success {
+    background:
+        var(--color-success-bg);
+
+    color:
+        var(--color-success);
 }
 
-#submitButton:disabled {
-    opacity: 0.65;
 
-    cursor: wait;
+@keyframes statusAppear {
 
-    transform: none;
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
 }
 
 
 /* =========================
-   ANTI-SPAM
+   HONEYPOT
 ========================= */
 
 .honeypot {
@@ -1089,25 +1239,44 @@ h2 {
 
         width: 100%;
 
-        padding: 12px 20px 24px;
+        padding:
+            12px 20px 24px;
 
         flex-direction: column;
 
-        background: rgba(250, 248, 245, 0.98);
+        background:
+            rgba(
+                250,
+                248,
+                245,
+                0.98
+            );
 
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter:
+            blur(15px);
 
-        border-bottom: 1px solid var(--color-border);
+        -webkit-backdrop-filter:
+            blur(15px);
+
+        border-bottom:
+            1px solid
+            var(--color-border);
 
         box-shadow:
-            0 15px 30px rgba(0, 0, 0, 0.05);
+            0 15px 30px
+            rgba(
+                0,
+                0,
+                0,
+                0.05
+            );
 
         opacity: 0;
 
         visibility: hidden;
 
-        transform: translateY(-10px);
+        transform:
+            translateY(-10px);
 
         pointer-events: none;
 
@@ -1122,7 +1291,8 @@ h2 {
 
         visibility: visible;
 
-        transform: translateY(0);
+        transform:
+            translateY(0);
 
         pointer-events: auto;
     }
@@ -1130,9 +1300,11 @@ h2 {
     .mobile-menu a {
         display: block;
 
-        padding: 14px 5px;
+        padding:
+            14px 5px;
 
-        color: var(--color-text);
+        color:
+            var(--color-text);
 
         font-size: 1rem;
         font-weight: 600;
@@ -1140,13 +1312,16 @@ h2 {
         text-decoration: none;
 
         border-bottom:
-            1px solid var(--color-border);
+            1px solid
+            var(--color-border);
     }
 
-    .mobile-menu a:last-child {
+    .mobile-menu
+    a:last-child {
         border-bottom: none;
 
-        color: var(--color-primary-dark);
+        color:
+            var(--color-primary-dark);
     }
 
 
@@ -1171,18 +1346,9 @@ h2 {
         padding: 30px;
     }
 
-    .package-card.popular .package-content {
+    .package-card.popular
+    .package-content {
         padding-top: 60px;
-    }
-
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
-
-    .contact-intro {
-        max-width: 600px;
-        padding-top: 0;
     }
 }
 
@@ -1196,7 +1362,8 @@ h2 {
     /* HEADER */
 
     .navbar {
-        width: calc(100% - 30px);
+        width:
+            calc(100% - 30px);
 
         min-height: 70px;
 
@@ -1205,10 +1372,6 @@ h2 {
 
     .logo {
         font-size: 1.05rem;
-    }
-
-    .nav-actions {
-        gap: 8px;
     }
 
     .nav-contact {
@@ -1226,13 +1389,16 @@ h2 {
     /* HERO */
 
     .hero {
-        padding: 45px 0 65px;
+        padding:
+            45px 0 65px;
     }
 
     .hero-container {
-        width: calc(100% - 30px);
+        width:
+            calc(100% - 30px);
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
         gap: 48px;
     }
@@ -1246,18 +1412,24 @@ h2 {
 
         font-size: 0.7rem;
 
-        letter-spacing: 0.14em;
+        letter-spacing:
+            0.14em;
     }
 
     .hero h1 {
         max-width: none;
 
         font-size:
-            clamp(2.8rem, 12.5vw, 4rem);
+            clamp(
+                2.8rem,
+                12.5vw,
+                4rem
+            );
 
         line-height: 1.02;
 
-        letter-spacing: -0.04em;
+        letter-spacing:
+            -0.04em;
     }
 
     .hero h1 span {
@@ -1278,10 +1450,13 @@ h2 {
     .hero .button-group {
         margin-top: 30px;
 
-        flex-direction: column;
+        flex-direction:
+            column;
     }
 
-    .hero .button-group .btn {
+    .hero
+    .button-group
+    .btn {
         width: 100%;
 
         min-height: 54px;
@@ -1295,18 +1470,21 @@ h2 {
 
         min-height: 0;
 
-        border-radius: var(--radius-medium);
+        border-radius:
+            var(--radius-medium);
     }
 
 
     /* PACKAGES */
 
     .packages {
-        padding: 70px 0;
+        padding:
+            70px 0;
     }
 
     .packages-container {
-        width: calc(100% - 30px);
+        width:
+            calc(100% - 30px);
     }
 
     .section-heading {
@@ -1314,15 +1492,13 @@ h2 {
     }
 
     .packages-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
         gap: 18px;
     }
 
-    .package-card.popular {
-        transform: none;
-    }
-
+    .package-card.popular,
     .package-card.popular:hover {
         transform: none;
     }
@@ -1331,7 +1507,8 @@ h2 {
         padding: 28px;
     }
 
-    .package-card.popular .package-content {
+    .package-card.popular
+    .package-content {
         padding-top: 60px;
     }
 
@@ -1340,26 +1517,62 @@ h2 {
     }
 
     .package-price {
-        margin: 25px 0;
+        margin:
+            25px 0;
 
         font-size: 2.7rem;
     }
 
+
+    /* CONTACT */
+
     .contact {
-        padding: 70px 0;
+        padding:
+            70px 0;
     }
 
     .contact-container {
-        width: calc(100% - 30px);
+        width:
+            calc(100% - 30px);
+    }
+
+    .contact-form {
+        padding:
+            26px 20px;
+
+        border-radius:
+            var(--radius-medium);
     }
 
     .contact-fields {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        grid-template-columns:
+            1fr;
+
+        gap: 20px;
     }
 
     .form-field-full {
         grid-column: auto;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+        /*
+        16px evită zoom-ul automat
+        în Safari pe iPhone.
+        */
+        font-size: 16px;
+    }
+
+    .contact-submit {
+        min-height: 56px;
+
+        margin-top: 24px;
+    }
+
+    .contact-status {
+        font-size: 0.9rem;
     }
 }
 
@@ -1371,7 +1584,8 @@ h2 {
 @media (max-width: 380px) {
 
     .navbar {
-        width: calc(100% - 24px);
+        width:
+            calc(100% - 24px);
     }
 
     .logo {
@@ -1383,28 +1597,24 @@ h2 {
         height: 40px;
     }
 
-    .hero-container {
-        width: calc(100% - 24px);
+    .hero-container,
+    .packages-container,
+    .contact-container {
+        width:
+            calc(100% - 24px);
     }
 
     .hero h1 {
         font-size: 2.7rem;
     }
 
-    .packages-container {
-        width: calc(100% - 24px);
-    }
-
-    .contact-container {
-        width: calc(100% - 24px);
-    }
-
     .package-content {
         padding: 24px;
     }
 
-    .package-card.popular .package-content {
-        padding-top: 58px;
+    .contact-form {
+        padding:
+            24px 17px;
     }
 }
 
@@ -1422,62 +1632,13 @@ h2 {
     *,
     *::before,
     *::after {
-        scroll-behavior: auto !important;
+        scroll-behavior:
+            auto !important;
 
-        transition: none !important;
+        transition:
+            none !important;
 
-        animation: none !important;
+        animation:
+            none !important;
     }
-}
-
-/* =========================
-   ANTI-SPAM
-========================= */
-
-.honeypot {
-    position: absolute !important;
-
-    left: -9999px !important;
-
-    width: 1px !important;
-    height: 1px !important;
-
-    overflow: hidden !important;
-
-    opacity: 0 !important;
-
-    pointer-events: none !important;
-}
-
-/* =========================
-   FORM STATUS
-========================= */
-
-.form-status {
-    min-height: 24px;
-
-    margin-top: 14px;
-
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.form-status.sending {
-    color: var(--color-text-light);
-}
-
-.form-status.success {
-    color: #56704A;
-}
-
-.form-status.error {
-    color: #A63D40;
-}
-
-#submitButton:disabled {
-    opacity: 0.65;
-
-    cursor: wait;
-
-    transform: none;
 }
