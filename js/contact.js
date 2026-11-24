@@ -1,52 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const form =
-        document.getElementById("contactForm");
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("contactStatus");
 
-    const submitButton =
-        document.getElementById("submitButton");
-
-    const formStatus =
-        document.getElementById("formStatus");
-
-    const packageSelect =
-        document.getElementById("package");
-
-
-    if (!form) {
+    if (!form || !status) {
         return;
     }
 
 
     /* =========================
-       POPULARE PACHETE
+       COMPLETEAZA PACHETUL
+       DIN SESSION STORAGE
     ========================= */
 
-    if (
-        packageSelect &&
-        typeof CONFIG !== "undefined" &&
-        Array.isArray(CONFIG.packages)
-    ) {
-
-        CONFIG.packages.forEach((packageItem) => {
-
-            const option =
-                document.createElement("option");
-
-            option.value =
-                packageItem.name;
-
-            option.textContent =
-                packageItem.name;
-
-            packageSelect.appendChild(option);
-
-        });
+    const packageField =
+        form.querySelector('[name="package"]');
 
 
-        /* =========================
-           PACHET SELECTAT ANTERIOR
-        ========================= */
+    if (packageField) {
 
         try {
 
@@ -55,25 +26,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     sessionStorage.getItem(
                         "photoBoothSelections"
                     )
-                );
+                ) || {};
 
 
             if (
-                selections &&
                 selections.package &&
-                selections.package.name
+                selections.package.id
             ) {
 
-                packageSelect.value =
-                    selections.package.name;
+                packageField.value =
+                    selections.package.id;
 
             }
 
         } catch (error) {
 
             console.warn(
-                "Nu am putut citi pachetul salvat.",
-                error
+                "Nu am putut citi pachetul selectat."
             );
 
         }
@@ -90,130 +59,101 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
 
-        /* Verificăm formularul */
+        const submitButton =
+            form.querySelector(
+                'button[type="submit"]'
+            );
 
-        if (!form.checkValidity()) {
 
-            form.reportValidity();
+        /* Dezactivam temporar butonul */
 
-            return;
+        if (submitButton) {
+
+            submitButton.disabled = true;
+
+            submitButton.textContent =
+                "Se trimite...";
+
         }
 
 
-        /* Verificăm URL-ul Apps Script */
-
-        const scriptUrl =
-    CONFIG?.googleScriptUrl ||
-    CONFIG?.business?.googleScriptUrl;
-
-
-if (!scriptUrl) {
-
-    formStatus.textContent =
-        "Formularul nu este configurat momentan.";
-
-    formStatus.className =
-        "form-status error";
-
-    return;
-}
-{
-
-            formStatus.textContent =
-                "Formularul nu este configurat momentan.";
-
-            formStatus.className =
-                "form-status error";
-
-            return;
-        }
-
-
-        /* Blocăm butonul */
-
-        submitButton.disabled = true;
-
-        submitButton.textContent =
-            "Se trimite...";
-
-
-        formStatus.textContent =
+        status.textContent =
             "Trimitem cererea...";
 
-        formStatus.className =
-            "form-status sending";
 
-
-        /* Pregătim datele */
+        /* =========================
+           DATE FORMULAR
+        ========================= */
 
         const formData =
             new FormData(form);
 
 
+        /* Honeypot anti-spam */
+
+        const website =
+            formData.get("website");
+
+
+        if (website) {
+
+            status.textContent =
+                "Cererea a fost trimisă.";
+
+            resetSubmitButton();
+
+            return;
+
+        }
+
+
+        /* =========================
+           TRIMITERE GOOGLE SHEETS
+        ========================= */
+
         try {
 
+            if (!CONFIG.googleScriptUrl) {
+
+                throw new Error(
+                    "Lipsește googleScriptUrl din config.js"
+                );
+
+            }
+
+
             /*
-             * Google Apps Script Web App.
-             *
-             * no-cors este intenționat.
-             * Browserul trimite datele, dar nu încearcă
-             * să citească răspunsul Apps Script.
-             */
+               no-cors este intenționat.
+
+               GitHub Pages trimite formularul
+               către Google Apps Script.
+            */
 
             await fetch(
-                scriptUrl,
+                CONFIG.googleScriptUrl,
                 {
                     method: "POST",
 
                     mode: "no-cors",
 
-                    body: formData
+                    body: formData,
+
+                    keepalive: true
                 }
             );
 
 
+            status.textContent =
+                "Cererea a fost trimisă cu succes!";
+
+
             /* =========================
-               SUCCES
+               WHATSAPP - DOAR TELEFON
             ========================= */
 
-            formStatus.textContent =
-                "Cererea a fost trimisă. Mulțumim! 📸";
+            if (isMobileDevice()) {
 
-            formStatus.className =
-                "form-status success";
-
-
-            /* Resetăm formularul */
-
-            form.reset();
-
-
-            /* Ștergem selecția pachetului */
-
-            try {
-
-                const selections =
-                    JSON.parse(
-                        sessionStorage.getItem(
-                            "photoBoothSelections"
-                        )
-                    ) || {};
-
-
-                delete selections.package;
-
-
-                sessionStorage.setItem(
-                    "photoBoothSelections",
-                    JSON.stringify(selections)
-                );
-
-            } catch (error) {
-
-                console.warn(
-                    "Nu am putut actualiza selecțiile.",
-                    error
-                );
+                openWhatsApp(formData);
 
             }
 
@@ -226,22 +166,201 @@ if (!scriptUrl) {
             );
 
 
-            formStatus.textContent =
-                "Cererea nu a putut fi trimisă. Încearcă din nou.";
+            status.textContent =
+                "Nu am putut trimite cererea. Te rugăm să încerci din nou.";
 
-            formStatus.className =
-                "form-status error";
+
+            resetSubmitButton();
+
+            return;
 
         }
 
 
-        /* Reactivăm butonul */
+        resetSubmitButton();
 
-        submitButton.disabled = false;
 
-        submitButton.textContent =
-            "Cere oferta";
+        /* =========================
+           RESET FORMULAR
+        ========================= */
+
+        /*
+           Nu facem reset imediat pe telefon
+           înainte de construirea mesajului WhatsApp.
+
+           Mesajul a fost deja construit
+           în openWhatsApp().
+        */
+
+        form.reset();
 
     });
+
+
+
+    /* =========================
+       RESET BUTON
+    ========================= */
+
+    function resetSubmitButton() {
+
+        if (!submitButtonExists()) {
+            return;
+        }
+
+
+        const button =
+            form.querySelector(
+                'button[type="submit"]'
+            );
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "Cere oferta";
+
+    }
+
+
+    function submitButtonExists() {
+
+        return Boolean(
+            form.querySelector(
+                'button[type="submit"]'
+            )
+        );
+
+    }
+
+
+
+    /* =========================
+       DETECTARE TELEFON
+    ========================= */
+
+    function isMobileDevice() {
+
+        return (
+            window.matchMedia(
+                "(max-width: 768px)"
+            ).matches
+        );
+
+    }
+
+
+
+    /* =========================
+       WHATSAPP
+    ========================= */
+
+    function openWhatsApp(formData) {
+
+        const whatsappNumber =
+            CONFIG.business.whatsapp;
+
+
+        if (!whatsappNumber) {
+            return;
+        }
+
+
+        const name =
+            formData.get("name") || "";
+
+        const phone =
+            formData.get("phone") || "";
+
+        const email =
+            formData.get("email") || "";
+
+        const eventType =
+            formData.get("eventType") || "";
+
+        const eventDate =
+            formData.get("eventDate") || "";
+
+        const location =
+            formData.get("location") || "";
+
+        const packageId =
+            formData.get("package") || "";
+
+        const message =
+            formData.get("message") || "";
+
+
+        /* Gasim numele pachetului */
+
+        let packageName =
+            packageId;
+
+
+        if (
+            typeof CONFIG !== "undefined" &&
+            Array.isArray(CONFIG.packages)
+        ) {
+
+            const selectedPackage =
+                CONFIG.packages.find(
+                    (item) =>
+                        item.id === packageId
+                );
+
+
+            if (selectedPackage) {
+
+                packageName =
+                    selectedPackage.name;
+
+            }
+
+        }
+
+
+        /* =========================
+           MESAJ WHATSAPP
+        ========================= */
+
+        const whatsappMessage = [
+            "Bună! 👋",
+            "",
+            "Tocmai am completat formularul pentru cabina foto.",
+            "",
+            `Nume: ${name}`,
+            `Telefon: ${phone}`,
+            `Email: ${email}`,
+            `Eveniment: ${eventType}`,
+            `Data: ${eventDate || "Nespecificată"}`,
+            `Locație: ${location || "Nespecificată"}`,
+            `Pachet: ${packageName || "Nespecificat"}`,
+            "",
+            "Mesaj:",
+            message || "-"
+        ].join("\n");
+
+
+        const whatsappUrl =
+            `https://wa.me/${whatsappNumber}` +
+            `?text=${encodeURIComponent(
+                whatsappMessage
+            )}`;
+
+
+        /*
+           Mică întârziere pentru ca browserul
+           să pornească cererea către Apps Script
+           înainte să deschidă WhatsApp.
+        */
+
+        setTimeout(() => {
+
+            window.location.href =
+                whatsappUrl;
+
+        }, 500);
+
+    }
 
 });
