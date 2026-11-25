@@ -40,68 +40,7 @@
     >
 </head>
 
-<!-- =========================
-     LIGHTBOX MODELE
-========================== -->
 
-<div
-    class="template-lightbox"
-    id="templateLightbox"
-    aria-hidden="true"
->
-
-    <button
-        class="lightbox-close"
-        id="lightboxClose"
-        type="button"
-        aria-label="Închide imaginea"
-    >
-        ×
-    </button>
-
-
-    <button
-        class="lightbox-nav lightbox-prev"
-        id="lightboxPrev"
-        type="button"
-        aria-label="Modelul anterior"
-    >
-        ‹
-    </button>
-
-
-    <div class="lightbox-content">
-
-        <img
-            id="lightboxImage"
-            src=""
-            alt=""
-        >
-
-        <div class="lightbox-info">
-
-            <span id="lightboxCategory">
-            </span>
-
-            <h3 id="lightboxTitle">
-            </h3>
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="lightbox-nav lightbox-next"
-        id="lightboxNext"
-        type="button"
-        aria-label="Modelul următor"
-    >
-        ›
-    </button>
-
-</div>
-    
 <body>
 
     <!-- =========================
@@ -111,8 +50,6 @@
     <header class="site-header">
 
         <div class="navbar">
-
-            <!-- Logo -->
 
             <a
                 href="#acasa"
@@ -126,22 +63,24 @@
 
             <nav class="nav-menu">
 
-    <a href="#acasa">
-        Acasă
-    </a>
+                <a href="#acasa">
+                    Acasă
+                </a>
 
-    <a href="#pachete">
-        Pachete
-    </a>
+                <a href="#pachete">
+                    Pachete
+                </a>
 
-    <a href="#modele">
-        Modele
-    </a>
+                <a href="#modele">
+                    Modele
+                </a>
 
-</nav>
+                <a href="#panouri">
+                    Panouri
+                </a>
 
+            </nav>
 
-            <!-- Acțiuni dreapta -->
 
             <div class="nav-actions">
 
@@ -153,8 +92,6 @@
                 </a>
 
 
-                <!-- Hamburger mobil -->
-
                 <button
                     class="menu-toggle"
                     id="menuToggle"
@@ -162,11 +99,9 @@
                     aria-label="Deschide meniul"
                     aria-expanded="false"
                 >
-
                     <span></span>
                     <span></span>
                     <span></span>
-
                 </button>
 
             </div>
@@ -176,28 +111,32 @@
 
         <!-- Meniu mobil -->
 
-       <nav
-    class="mobile-menu"
-    id="mobileMenu"
->
+        <nav
+            class="mobile-menu"
+            id="mobileMenu"
+        >
 
-    <a href="#acasa">
-        Acasă
-    </a>
+            <a href="#acasa">
+                Acasă
+            </a>
 
-    <a href="#pachete">
-        Pachete
-    </a>
+            <a href="#pachete">
+                Pachete
+            </a>
 
-    <a href="#modele">
-        Modele
-    </a>
+            <a href="#modele">
+                Modele
+            </a>
 
-    <a href="#contact">
-        Cere ofertă
-    </a>
+            <a href="#panouri">
+                Panouri
+            </a>
 
-</nav>
+            <a href="#contact">
+                Cere ofertă
+            </a>
+
+        </nav>
 
     </header>
 
@@ -221,26 +160,19 @@
 
             <div class="hero-container">
 
-
-                <!-- Text -->
-
                 <div class="hero-content">
 
                     <p class="eyebrow">
                         CABINĂ FOTO PENTRU EVENIMENTE
                     </p>
 
-
                     <h1>
-
                         Amintiri care rămân.
 
                         <span>
                             Distracție care începe aici.
                         </span>
-
                     </h1>
-
 
                     <p class="lead">
                         Cabină foto pentru momentele pe care vrei să le păstrezi.
@@ -256,7 +188,6 @@
                             Vezi pachetele
                         </a>
 
-
                         <a
                             href="#contact"
                             class="btn btn-secondary"
@@ -269,14 +200,12 @@
                 </div>
 
 
-                <!-- Imagine -->
-
                 <div class="hero-image">
 
                     <img
-    src="assets/images/hero.jpg"
-    alt="Cabină foto la eveniment"
->
+                        src="assets/images/hero.jpg"
+                        alt="Cabină foto la eveniment"
+                    >
 
                 </div>
 
@@ -284,108 +213,7 @@
 
         </section>
 
-<!-- =========================
-     LIGHTBOX MODELE
-========================== -->
 
-<div
-    class="template-lightbox"
-    id="templateLightbox"
-    aria-hidden="true"
->
-
-    <div
-        class="lightbox-backdrop"
-        data-lightbox-close
-    ></div>
-
-
-    <div
-        class="lightbox-content"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Previzualizare model"
-    >
-
-        <!-- Închidere -->
-
-        <button
-            type="button"
-            class="lightbox-close"
-            id="lightboxClose"
-            aria-label="Închide"
-        >
-            ×
-        </button>
-
-
-        <!-- Imagine -->
-
-        <div class="lightbox-image">
-
-            <img
-                id="lightboxImage"
-                src=""
-                alt=""
-            >
-
-        </div>
-
-
-        <!-- Informații -->
-
-        <div class="lightbox-info">
-
-            <span
-                class="template-category"
-                id="lightboxCategory"
-            ></span>
-
-            <h3 id="lightboxName"></h3>
-
-
-            <button
-                type="button"
-                class="btn btn-primary"
-                id="selectTemplateButton"
-            >
-                Îmi place acest model
-            </button>
-
-
-            <p
-                class="lightbox-selection-status"
-                id="templateSelectionStatus"
-                aria-live="polite"
-            ></p>
-
-        </div>
-
-
-        <!-- Navigare -->
-
-        <button
-            type="button"
-            class="lightbox-nav lightbox-prev"
-            id="lightboxPrev"
-            aria-label="Modelul anterior"
-        >
-            ‹
-        </button>
-
-
-        <button
-            type="button"
-            class="lightbox-nav lightbox-next"
-            id="lightboxNext"
-            aria-label="Modelul următor"
-        >
-            ›
-        </button>
-
-    </div>
-
-</div>
 
         <!-- =========================
              PACHETE
@@ -404,12 +232,10 @@
                         PACHETE
                     </p>
 
-
                     <h2>
                         Alege varianta potrivită
                         pentru evenimentul tău.
                     </h2>
-
 
                     <p>
                         De la petreceri restrânse până la evenimente
@@ -420,10 +246,7 @@
                 </div>
 
 
-                <!--
-                    Pachetele sunt generate
-                    automat din config.js
-                -->
+                <!-- Pachetele sunt generate din config.js -->
 
                 <div
                     class="packages-grid"
@@ -434,211 +257,246 @@
 
         </section>
 
-<!-- =========================
-     MODELE
-========================== -->
 
-<section
-    class="templates"
-    id="modele"
->
-
-    <div class="templates-container">
-
-        <!-- Titlu -->
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                MODELE
-            </p>
-
-            <h2>
-                Alege designul care se potrivește evenimentului tău.
-            </h2>
-
-            <p>
-                Alege modelul preferat, iar noi îl personalizăm
-                pentru evenimentul tău.
-            </p>
-
-        </div>
-
-
-        <!-- Filtre -->
-
-        <div class="template-filters">
-
-            <button
-                type="button"
-                class="template-filter active"
-                data-category="toate"
-            >
-                Toate
-            </button>
-
-            <button
-                type="button"
-                class="template-filter"
-                data-category="nunta"
-            >
-                Nuntă
-            </button>
-
-            <button
-                type="button"
-                class="template-filter"
-                data-category="botez"
-            >
-                Botez
-            </button>
-
-            <button
-                type="button"
-                class="template-filter"
-                data-category="majorat"
-            >
-                Majorat
-            </button>
-
-            <button
-                type="button"
-                class="template-filter"
-                data-category="cununie"
-            >
-                Cununie
-            </button>
-
-            <button
-                type="button"
-                class="template-filter"
-                data-category="aniversare"
-            >
-                Aniversare
-            </button>
-
-            <button
-                type="button"
-                class="template-filter"
-                data-category="corporate"
-            >
-                Corporate
-            </button>
-
-        </div>
-
-
-        <!-- Modelele vor fi generate aici -->
-
-        <div
-            class="templates-grid"
-            id="templatesGrid"
-        ></div>
-
-
-        <!-- Mesaj dacă o categorie este goală -->
-
-        <p
-            class="templates-empty"
-            id="templatesEmpty"
-            hidden
-        >
-            Momentan nu sunt modele disponibile în această categorie.
-        </p>
-
-    </div>
-
-</section>
 
         <!-- =========================
-     PANOURI
-========================== -->
+             MODELE
+        ========================== -->
 
-<section class="panels" id="panouri">
+        <section
+            class="templates"
+            id="modele"
+        >
 
-    <div class="panels-container">
+            <div class="templates-container">
 
-        <div class="section-heading">
+                <div class="section-heading">
 
-            <p class="eyebrow">
-                PANOURI
-            </p>
+                    <p class="eyebrow">
+                        MODELE
+                    </p>
 
-            <h2>
-                Alege decorul potrivit atmosferei tale.
-            </h2>
+                    <h2>
+                        Alege designul care se potrivește evenimentului tău.
+                    </h2>
 
-            <p>
-                Descoperă panourile disponibile pentru cabina foto.
-                Apasă pe o imagine pentru a o vedea mai mare.
-            </p>
+                    <p>
+                        Alege modelul preferat, iar noi îl personalizăm
+                        pentru evenimentul tău.
+                    </p>
 
-        </div>
-
-
-        <div class="panels-grid">
-
-            <article
-                class="panel-card"
-                data-image="assets/images/panouri/panou-01.png"
-                data-name="Panou 01"
-            >
-
-                <img
-                    src="assets/images/panouri/panou-01.png"
-                    alt="Panou 01"
-                    loading="lazy"
-                >
-
-                <div class="panel-info">
-                    <h3>Panou 01</h3>
                 </div>
 
-            </article>
 
+                <!-- Filtre -->
 
-            <article
-                class="panel-card"
-                data-image="assets/images/panouri/panou-02.png"
-                data-name="Panou 02"
-            >
+                <div class="template-filters">
 
-                <img
-                    src="assets/images/panouri/panou-02.png"
-                    alt="Panou 02"
-                    loading="lazy"
-                >
+                    <button
+                        type="button"
+                        class="template-filter active"
+                        data-category="toate"
+                    >
+                        Toate
+                    </button>
 
-                <div class="panel-info">
-                    <h3>Panou 02</h3>
+                    <button
+                        type="button"
+                        class="template-filter"
+                        data-category="nunta"
+                    >
+                        Nuntă
+                    </button>
+
+                    <button
+                        type="button"
+                        class="template-filter"
+                        data-category="botez"
+                    >
+                        Botez
+                    </button>
+
+                    <button
+                        type="button"
+                        class="template-filter"
+                        data-category="majorat"
+                    >
+                        Majorat
+                    </button>
+
+                    <button
+                        type="button"
+                        class="template-filter"
+                        data-category="cununie"
+                    >
+                        Cununie
+                    </button>
+
+                    <button
+                        type="button"
+                        class="template-filter"
+                        data-category="aniversare"
+                    >
+                        Aniversare
+                    </button>
+
+                    <button
+                        type="button"
+                        class="template-filter"
+                        data-category="corporate"
+                    >
+                        Corporate
+                    </button>
+
                 </div>
 
-            </article>
+
+                <!-- Modelele sunt generate din gallery.js -->
+
+                <div
+                    class="templates-grid"
+                    id="templatesGrid"
+                ></div>
 
 
-            <article
-                class="panel-card"
-                data-image="assets/images/panouri/panou-03.png"
-                data-name="Panou 03"
-            >
-
-                <img
-                    src="assets/images/panouri/panou-03.png"
-                    alt="Panou 03"
-                    loading="lazy"
+                <p
+                    class="templates-empty"
+                    id="templatesEmpty"
+                    hidden
                 >
+                    Momentan nu sunt modele disponibile în această categorie.
+                </p>
 
-                <div class="panel-info">
-                    <h3>Panou 03</h3>
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             PANOURI
+        ========================== -->
+
+        <section
+            class="panels"
+            id="panouri"
+        >
+
+            <div class="panels-container">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        PANOURI
+                    </p>
+
+                    <h2>
+                        Alege decorul potrivit atmosferei tale.
+                    </h2>
+
+                    <p>
+                        Descoperă panourile disponibile pentru cabina foto.
+                        Apasă pe o imagine pentru a o vedea mai mare.
+                    </p>
+
                 </div>
 
-            </article>
 
-        </div>
+                <div class="panels-grid">
 
-    </div>
+                    <article
+                        class="panel-card"
+                        data-panel-id="panou-01"
+                        data-image="assets/images/panouri/panou-01.png"
+                        data-name="Panou 01"
+                        tabindex="0"
+                    >
 
-</section>
+                        <div class="panel-image">
+
+                            <img
+                                src="assets/images/panouri/panou-01.png"
+                                alt="Panou decorativ 01"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="panel-info">
+
+                            <h3>
+                                Panou 01
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+
+                    <article
+                        class="panel-card"
+                        data-panel-id="panou-02"
+                        data-image="assets/images/panouri/panou-02.png"
+                        data-name="Panou 02"
+                        tabindex="0"
+                    >
+
+                        <div class="panel-image">
+
+                            <img
+                                src="assets/images/panouri/panou-02.png"
+                                alt="Panou decorativ 02"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="panel-info">
+
+                            <h3>
+                                Panou 02
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+
+                    <article
+                        class="panel-card"
+                        data-panel-id="panou-03"
+                        data-image="assets/images/panouri/panou-03.png"
+                        data-name="Panou 03"
+                        tabindex="0"
+                    >
+
+                        <div class="panel-image">
+
+                            <img
+                                src="assets/images/panouri/panou-03.png"
+                                alt="Panou decorativ 03"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="panel-info">
+
+                            <h3>
+                                Panou 03
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
 
         <!-- =========================
              CONTACT
@@ -651,26 +509,19 @@
 
             <div class="contact-container">
 
-
-                <!-- Introducere -->
-
                 <div class="contact-intro">
 
                     <p class="eyebrow">
                         CONTACT
                     </p>
 
-
                     <h2>
-
                         Hai să păstrăm
 
                         <span>
                             momentele frumoase.
                         </span>
-
                     </h2>
-
 
                     <p>
                         Spune-ne câteva detalii despre evenimentul tău,
@@ -680,16 +531,10 @@
                 </div>
 
 
-
-                <!-- =========================
-                     FORMULAR
-                ========================== -->
-
                 <form
                     id="contactForm"
                     class="contact-form"
                 >
-
 
                     <!-- Anti-spam -->
 
@@ -713,7 +558,6 @@
                     </div>
 
 
-
                     <!-- Nume -->
 
                     <div class="form-group">
@@ -732,7 +576,6 @@
                         >
 
                     </div>
-
 
 
                     <!-- Telefon -->
@@ -755,7 +598,6 @@
                     </div>
 
 
-
                     <!-- Email -->
 
                     <div class="form-group">
@@ -773,7 +615,6 @@
                         >
 
                     </div>
-
 
 
                     <!-- Tip eveniment -->
@@ -827,7 +668,6 @@
                     </div>
 
 
-
                     <!-- Data -->
 
                     <div class="form-group">
@@ -844,7 +684,6 @@
                         >
 
                     </div>
-
 
 
                     <!-- Locație -->
@@ -865,7 +704,6 @@
                         >
 
                     </div>
-
 
 
                     <!-- Pachet -->
@@ -890,7 +728,6 @@
                     </div>
 
 
-
                     <!-- Mesaj -->
 
                     <div class="form-group form-group-full">
@@ -909,7 +746,6 @@
                     </div>
 
 
-
                     <!-- Submit -->
 
                     <div class="form-submit">
@@ -921,7 +757,6 @@
                         >
                             Cere oferta
                         </button>
-
 
                         <p
                             class="form-status"
@@ -942,15 +777,109 @@
 
 
     <!-- =========================
+         LIGHTBOX MODELE
+    ========================== -->
+
+    <div
+        class="template-lightbox"
+        id="templateLightbox"
+        aria-hidden="true"
+    >
+
+        <div
+            class="lightbox-backdrop"
+            data-lightbox-close
+        ></div>
+
+
+        <div
+            class="lightbox-content"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Previzualizare model"
+        >
+
+            <button
+                type="button"
+                class="lightbox-close"
+                id="lightboxClose"
+                aria-label="Închide"
+            >
+                ×
+            </button>
+
+
+            <div class="lightbox-image">
+
+                <img
+                    id="lightboxImage"
+                    src=""
+                    alt=""
+                >
+
+            </div>
+
+
+            <div class="lightbox-info">
+
+                <span
+                    class="template-category"
+                    id="lightboxCategory"
+                ></span>
+
+                <h3 id="lightboxName"></h3>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="selectTemplateButton"
+                >
+                    Îmi place acest model
+                </button>
+
+
+                <p
+                    class="lightbox-selection-status"
+                    id="templateSelectionStatus"
+                    aria-live="polite"
+                ></p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="lightbox-nav lightbox-prev"
+                id="lightboxPrev"
+                aria-label="Modelul anterior"
+            >
+                ‹
+            </button>
+
+
+            <button
+                type="button"
+                class="lightbox-nav lightbox-next"
+                id="lightboxNext"
+                aria-label="Modelul următor"
+            >
+                ›
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
          JAVASCRIPT
     ========================== -->
 
     <script src="js/config.js"></script>
-
     <script src="js/app.js"></script>
-
     <script src="js/gallery.js"></script>
-
     <script src="js/contact.js"></script>
 
 </body>
