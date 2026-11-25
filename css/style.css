@@ -2252,3 +2252,272 @@ când contact.js îi pune text.
     }
 
 }
+/* =========================
+   TEMPLATE LIGHTBOX
+========================= */
+
+.template-lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+
+/* Lightbox deschis */
+
+.template-lightbox.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* =========================
+   BACKDROP
+========================= */
+
+.lightbox-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(20, 18, 16, 0.82);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================
+   LIGHTBOX CONTENT
+========================= */
+
+.lightbox-content {
+    position: relative;
+
+    z-index: 1;
+
+    width: min(1000px, 100%);
+
+    max-height: calc(100vh - 60px);
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(260px, 0.65fr);
+
+    overflow: hidden;
+
+    background: var(--color-white);
+
+    border-radius: var(--radius-large);
+
+    box-shadow:
+        0 30px 90px
+        rgba(0, 0, 0, 0.25);
+
+    transform: translateY(15px) scale(0.98);
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.template-lightbox.active
+.lightbox-content {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================
+   LIGHTBOX IMAGE
+========================= */
+
+.lightbox-image {
+    min-height: 600px;
+
+    background: var(--color-bg);
+}
+
+.lightbox-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+/* =========================
+   LIGHTBOX INFO
+========================= */
+
+.lightbox-info {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 40px;
+}
+
+.lightbox-info h3 {
+    margin-bottom: 30px;
+
+    font-size: 2rem;
+}
+
+.lightbox-info .btn {
+    width: 100%;
+}
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+.lightbox-close {
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    z-index: 5;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    font-size: 1.7rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.lightbox-close:hover {
+    background: var(--color-primary-light);
+
+    transform: rotate(5deg);
+}
+
+
+/* =========================
+   LIGHTBOX NAVIGATION
+========================= */
+
+.lightbox-nav {
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 4;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    font-size: 2rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transform: translateY(-50%);
+
+    transition: var(--transition);
+}
+
+.lightbox-nav:hover {
+    background: var(--color-primary-light);
+}
+
+.lightbox-prev {
+    left: 16px;
+}
+
+.lightbox-next {
+    right: calc(35% + 16px);
+}
+
+
+/* =========================
+   TEMPLATE SELECTION STATUS
+========================= */
+
+.lightbox-selection-status {
+    min-height: 24px;
+
+    margin-top: 14px;
+
+    color: #527A5A;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* Blochează scroll când lightbox-ul e deschis */
+
+body.lightbox-open {
+    overflow: hidden;
+}
