@@ -19,12 +19,43 @@ document.addEventListener("DOMContentLoaded", () => {
             category: "botez",
             image: "assets/images/templates/botez/botez-02.png"
         },
+
         {
-        id: "majorat-01",
-        name: "Majorat 01",
-        category: "majorat",
-        image: "assets/images/templates/majorat/majorat-01.png"
-    }
+            id: "majorat-01",
+            name: "Majorat 01",
+            category: "majorat",
+            image: "assets/images/templates/majorat/majorat-01.png"
+        }
+
+    ];
+
+
+    /* =========================
+       PANOURI
+    ========================= */
+
+    const panels = [
+
+        {
+            id: "panou-01",
+            name: "Panou 01",
+            category: "panou",
+            image: "assets/images/panouri/panou-01.png"
+        },
+
+        {
+            id: "panou-02",
+            name: "Panou 02",
+            category: "panou",
+            image: "assets/images/panouri/panou-02.png"
+        },
+
+        {
+            id: "panou-03",
+            name: "Panou 03",
+            category: "panou",
+            image: "assets/images/panouri/panou-03.png"
+        }
 
     ];
 
@@ -38,6 +69,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const filterButtons =
         document.querySelectorAll(".template-filter");
+
+    const panelCards =
+        document.querySelectorAll(".panel-card");
+
+
+    /* =========================
+       ELEMENTE LIGHTBOX
+    ========================= */
 
     const lightbox =
         document.getElementById("templateLightbox");
@@ -60,106 +99,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxNext =
         document.getElementById("lightboxNext");
 
-  
 
+    /* =========================
+       STARE LIGHTBOX
+    ========================= */
 
-    if (!templatesGrid) {
-        return;
-    }
-
-
-    let currentTemplateIndex = 0;
+    let currentIndex = 0;
 
     let visibleTemplates = [...templates];
 
-
-    /* =========================
-       AFISARE MODELE
-    ========================= */
-
-    function renderTemplates(items) {
-
-        templatesGrid.innerHTML = "";
-
-
-        items.forEach((template) => {
-
-            const originalIndex =
-                templates.findIndex(
-                    (item) =>
-                        item.id === template.id
-                );
-
-
-            const card =
-                document.createElement("article");
-
-
-            card.className =
-                "template-card";
-
-            card.dataset.category =
-                template.category;
-
-            card.dataset.index =
-                originalIndex;
-
-
-            card.innerHTML = `
-
-                <div class="template-image">
-
-                    <img
-                        src="${template.image}"
-                        alt="${template.name}"
-                        loading="lazy"
-                    >
-
-                </div>
-
-                <div class="template-info">
-
-                    <span class="template-category">
-                        ${formatCategory(
-                            template.category
-                        )}
-                    </span>
-
-                    <h3>
-                        ${template.name}
-                    </h3>
-
-                </div>
-
-            `;
-
-
-            card.addEventListener(
-                "click",
-                () => {
-
-                    const visibleIndex =
-                        visibleTemplates.findIndex(
-                            (item) =>
-                                item.id === template.id
-                        );
-
-
-                    openLightbox(
-                        visibleIndex
-                    );
-
-                }
-            );
-
-
-            templatesGrid.appendChild(
-                card
-            );
-
-        });
-
-    }
+    let activeItems = [...templates];
 
 
     /* =========================
@@ -180,72 +129,167 @@ document.addEventListener("DOMContentLoaded", () => {
 
             aniversare: "Aniversare",
 
-            corporate: "Corporate"
+            corporate: "Corporate",
+
+            panou: "Panou"
 
         };
 
 
-        return (
-            categories[category] ||
-            category
-        );
+        return categories[category] || category;
 
     }
 
 
     /* =========================
-       FILTRE
+       AFISARE MODELE
+    ========================= */
+
+    function renderTemplates(items) {
+
+        if (!templatesGrid) {
+            return;
+        }
+
+
+        templatesGrid.innerHTML = "";
+
+
+        items.forEach((template) => {
+
+            const card =
+                document.createElement("article");
+
+
+            card.className = "template-card";
+
+            card.dataset.category =
+                template.category;
+
+            card.dataset.id =
+                template.id;
+
+
+            card.innerHTML = `
+
+                <div class="template-image">
+
+                    <img
+                        src="${template.image}"
+                        alt="${template.name}"
+                        loading="lazy"
+                    >
+
+                </div>
+
+                <div class="template-info">
+
+                    <span class="template-category">
+                        ${formatCategory(template.category)}
+                    </span>
+
+                    <h3>
+                        ${template.name}
+                    </h3>
+
+                </div>
+
+            `;
+
+
+            card.addEventListener("click", () => {
+
+                activeItems = [...visibleTemplates];
+
+
+                const selectedIndex =
+                    activeItems.findIndex(
+                        (item) =>
+                            item.id === template.id
+                    );
+
+
+                openLightbox(selectedIndex);
+
+            });
+
+
+            templatesGrid.appendChild(card);
+
+        });
+
+    }
+
+
+    /* =========================
+       FILTRARE MODELE
     ========================= */
 
     filterButtons.forEach((button) => {
 
-        button.addEventListener(
-            "click",
-            () => {
+        button.addEventListener("click", () => {
 
-                const category =
-                    button.dataset.category;
+            const selectedCategory =
+                button.dataset.category;
 
 
-                filterButtons.forEach(
-                    (item) => {
+            filterButtons.forEach((item) => {
 
-                        item.classList.remove(
-                            "active"
-                        );
+                item.classList.remove("active");
 
-                    }
-                );
+            });
 
 
-                button.classList.add(
-                    "active"
-                );
+            button.classList.add("active");
 
 
-                if (category === "toate") {
+            if (selectedCategory === "toate") {
 
-                    visibleTemplates =
-                        [...templates];
+                visibleTemplates =
+                    [...templates];
 
-                } else {
+            } else {
 
-                    visibleTemplates =
-                        templates.filter(
-                            (template) =>
-                                template.category ===
-                                category
-                        );
-
-                }
-
-
-                renderTemplates(
-                    visibleTemplates
-                );
+                visibleTemplates =
+                    templates.filter(
+                        (template) =>
+                            template.category ===
+                            selectedCategory
+                    );
 
             }
-        );
+
+
+            renderTemplates(visibleTemplates);
+
+        });
+
+    });
+
+
+    /* =========================
+       PANOURI
+    ========================= */
+
+    panelCards.forEach((card, index) => {
+
+        card.addEventListener("click", () => {
+
+            activeItems = [...panels];
+
+
+            /*
+               Dacă ordinea cardurilor din HTML
+               este Panou 01, 02, 03,
+               folosim direct indexul cardului.
+            */
+
+            currentIndex = index;
+
+
+            openLightbox(currentIndex);
+
+        });
 
     });
 
@@ -258,21 +302,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (
             !lightbox ||
-            visibleTemplates.length === 0
+            activeItems.length === 0
         ) {
             return;
         }
 
 
-        currentTemplateIndex = index;
+        if (
+            index < 0 ||
+            index >= activeItems.length
+        ) {
+            currentIndex = 0;
+
+        } else {
+
+            currentIndex = index;
+
+        }
 
 
         updateLightbox();
 
 
-        lightbox.classList.add(
-            "active"
-        );
+        lightbox.classList.add("active");
 
 
         lightbox.setAttribute(
@@ -293,13 +345,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateLightbox() {
 
-        const template =
-            visibleTemplates[
-                currentTemplateIndex
-            ];
+        const item =
+            activeItems[currentIndex];
 
 
-        if (!template) {
+        if (!item) {
             return;
         }
 
@@ -307,10 +357,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (lightboxImage) {
 
             lightboxImage.src =
-                template.image;
+                item.image;
 
             lightboxImage.alt =
-                template.name;
+                item.name;
 
         }
 
@@ -318,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (lightboxTitle) {
 
             lightboxTitle.textContent =
-                template.name;
+                item.name;
 
         }
 
@@ -326,9 +376,32 @@ document.addEventListener("DOMContentLoaded", () => {
         if (lightboxCategory) {
 
             lightboxCategory.textContent =
-                formatCategory(
-                    template.category
-                );
+                formatCategory(item.category);
+
+        }
+
+
+        /*
+           Ascundem săgețile dacă există
+           o singură imagine în colecție.
+        */
+
+        const showNavigation =
+            activeItems.length > 1;
+
+
+        if (lightboxPrev) {
+
+            lightboxPrev.hidden =
+                !showNavigation;
+
+        }
+
+
+        if (lightboxNext) {
+
+            lightboxNext.hidden =
+                !showNavigation;
 
         }
 
@@ -346,9 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        lightbox.classList.remove(
-            "active"
-        );
+        lightbox.classList.remove("active");
 
 
         lightbox.setAttribute(
@@ -364,25 +435,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================
-       MODEL ANTERIOR
+       IMAGINE ANTERIOARA
     ========================= */
 
     function showPrevious() {
 
-        if (
-            visibleTemplates.length === 0
-        ) {
+        if (activeItems.length === 0) {
             return;
         }
 
 
-        currentTemplateIndex--;
+        currentIndex--;
 
 
-        if (currentTemplateIndex < 0) {
+        if (currentIndex < 0) {
 
-            currentTemplateIndex =
-                visibleTemplates.length - 1;
+            currentIndex =
+                activeItems.length - 1;
 
         }
 
@@ -393,27 +462,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================
-       MODEL URMATOR
+       IMAGINE URMATOARE
     ========================= */
 
     function showNext() {
 
-        if (
-            visibleTemplates.length === 0
-        ) {
+        if (activeItems.length === 0) {
             return;
         }
 
 
-        currentTemplateIndex++;
+        currentIndex++;
 
 
         if (
-            currentTemplateIndex >=
-            visibleTemplates.length
+            currentIndex >=
+            activeItems.length
         ) {
 
-            currentTemplateIndex = 0;
+            currentIndex = 0;
 
         }
 
@@ -441,7 +508,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         lightboxPrev.addEventListener(
             "click",
-            showPrevious
+            (event) => {
+
+                event.stopPropagation();
+
+                showPrevious();
+
+            }
         );
 
     }
@@ -451,7 +524,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         lightboxNext.addEventListener(
             "click",
-            showNext
+            (event) => {
+
+                event.stopPropagation();
+
+                showNext();
+
+            }
         );
 
     }
@@ -523,13 +602,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-
     /* =========================
        INITIALIZARE
     ========================= */
 
-    renderTemplates(
-        visibleTemplates
-    );
+    renderTemplates(visibleTemplates);
 
 });
