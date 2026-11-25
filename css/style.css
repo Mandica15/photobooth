@@ -1923,3 +1923,10 @@ când contact.js îi pune text.
             none !important;
     }
 }
+/* =========================
+   TEMPLATE FILTERING
+========================= */
+
+.template-card.hidden {
+    display: none;
+}
