@@ -40,7 +40,76 @@
     >
 </head>
 
+<!-- =========================
+     LIGHTBOX MODELE
+========================== -->
 
+<div
+    class="template-lightbox"
+    id="templateLightbox"
+    aria-hidden="true"
+>
+
+    <button
+        class="lightbox-close"
+        id="lightboxClose"
+        type="button"
+        aria-label="Închide imaginea"
+    >
+        ×
+    </button>
+
+
+    <button
+        class="lightbox-nav lightbox-prev"
+        id="lightboxPrev"
+        type="button"
+        aria-label="Modelul anterior"
+    >
+        ‹
+    </button>
+
+
+    <div class="lightbox-content">
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt=""
+        >
+
+        <div class="lightbox-info">
+
+            <span id="lightboxCategory">
+            </span>
+
+            <h3 id="lightboxTitle">
+            </h3>
+
+            <button
+                class="btn btn-primary"
+                id="selectTemplate"
+                type="button"
+            >
+                Îmi place acest model
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="lightbox-nav lightbox-next"
+        id="lightboxNext"
+        type="button"
+        aria-label="Modelul următor"
+    >
+        ›
+    </button>
+
+</div>
+    
 <body>
 
     <!-- =========================
