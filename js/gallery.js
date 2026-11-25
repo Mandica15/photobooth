@@ -77,5 +77,62 @@ document.addEventListener("DOMContentLoaded", () => {
         templatesGrid.appendChild(card);
 
     });
+/* =========================
+   FILTRARE MODELE
+========================= */
 
+const filterButtons =
+    document.querySelectorAll(".template-filter");
+
+
+filterButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const selectedCategory =
+            button.dataset.category;
+
+
+        /* Buton activ */
+
+        filterButtons.forEach((item) => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+
+        /* Filtrare carduri */
+
+        const cards =
+            templatesGrid.querySelectorAll(".template-card");
+
+
+        cards.forEach((card) => {
+
+            const cardCategory =
+                card.dataset.category;
+
+
+            const shouldShow =
+                selectedCategory === "toate" ||
+                selectedCategory === cardCategory;
+
+
+            if (shouldShow) {
+
+                card.classList.remove("hidden");
+
+            } else {
+
+                card.classList.add("hidden");
+
+            }
+
+        });
+
+    });
+
+});
+    
 });
