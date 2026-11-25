@@ -18,7 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
             name: "Botez 02",
             category: "botez",
             image: "assets/images/templates/botez/botez-02.png"
-        }
+        },
+        {
+        id: "majorat-01",
+        name: "Majorat 01",
+        category: "majorat",
+        image: "assets/images/templates/majorat/majorat-01.png"
+    }
 
     ];
 
