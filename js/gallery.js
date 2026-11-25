@@ -54,8 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxNext =
         document.getElementById("lightboxNext");
 
-    const selectTemplate =
-        document.getElementById("selectTemplate");
+  
 
 
     if (!templatesGrid) {
@@ -517,88 +516,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     );
 
-
-    /* =========================
-       SELECTARE MODEL
-    ========================= */
-
-    if (selectTemplate) {
-
-        selectTemplate.addEventListener(
-            "click",
-            () => {
-
-                const template =
-                    visibleTemplates[
-                        currentTemplateIndex
-                    ];
-
-
-                if (!template) {
-                    return;
-                }
-
-
-                let selections = {};
-
-
-                try {
-
-                    selections =
-                        JSON.parse(
-                            sessionStorage.getItem(
-                                "photoBoothSelections"
-                            )
-                        ) || {};
-
-                } catch {
-
-                    selections = {};
-
-                }
-
-
-                selections.template = {
-
-                    id: template.id,
-
-                    name: template.name,
-
-                    category:
-                        template.category,
-
-                    image:
-                        template.image
-
-                };
-
-
-                sessionStorage.setItem(
-
-                    "photoBoothSelections",
-
-                    JSON.stringify(
-                        selections
-                    )
-
-                );
-
-
-                selectTemplate.textContent =
-                    "Model selectat ✓";
-
-
-                setTimeout(() => {
-
-                    selectTemplate.textContent =
-                        "Îmi place acest model";
-
-                }, 1500);
-
-            }
-        );
-
-    }
 
 
     /* =========================
